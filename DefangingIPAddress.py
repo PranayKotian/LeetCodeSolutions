@@ -1,4 +1,4 @@
-//https:https://leetcode.com/problems/defanging-an-ip-address/
+//https://leetcode.com/problems/defanging-an-ip-address/
 //Title: Defanging an IP Address
 //Difficulty: Easy
 //Language: Python3
