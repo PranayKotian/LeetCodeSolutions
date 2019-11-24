@@ -1,8 +1,8 @@
-//https://leetcode.com/problems/palindrome-number/submissions/
-//Title: Palindrome Number
-//Difficulty: Easy
-//Language: Python3
-//Author: Pranay Kotian
+#https://leetcode.com/problems/palindrome-number/submissions/
+#Title: Palindrome Number
+#Difficulty: Easy
+#Language: Python3
+#Author: Pranay Kotian
 
 class Solution:
     def isPalindrome(self, x: int) -> bool:

@@ -1,8 +1,8 @@
-//https://leetcode.com/problems/max-increase-to-keep-city-skyline/
-//Title: Max Increase to Keep City Skyline
-//Difficulty: Medium
-//Language: Python3
-//Author: Pranay Kotian
+#https://leetcode.com/problems/max-increase-to-keep-city-skyline/
+#Title: Max Increase to Keep City Skyline
+#Difficulty: Medium
+#Language: Python3
+#Author: Pranay Kotian
 
 class Solution:
     def maxIncreaseKeepingSkyline(self, grid: List[List[int]]) -> int:

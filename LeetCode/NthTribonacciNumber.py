@@ -1,8 +1,8 @@
-//https://leetcode.com/problems/n-th-tribonacci-number/submissions/
-//Title: N-th Tribonacci Number
-//Difficulty: Easy
-//Language: Python3
-//Author: Pranay Kotian
+#https://leetcode.com/problems/n-th-tribonacci-number/submissions/
+#Title: N-th Tribonacci Number
+#Difficulty: Easy
+#Language: Python3
+#Author: Pranay Kotian
 
 class Solution:
     def tribonacci(self, n: int) -> int:

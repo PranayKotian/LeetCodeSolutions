@@ -1,5 +1,5 @@
-//
-//Title: 
-//Difficulty:
-//Language: Python3
-//Author: Pranay Kotian
+#
+#Title: 
+#Difficulty:
+#Language: Python3
+#Author: Pranay Kotian

@@ -1,8 +1,8 @@
-//https://leetcode.com/problems/flipping-an-image/
-//Title: Flipping an Image
-//Difficulty: Easy
-//Language: Python3
-//Author: Pranay Kotian
+#https://leetcode.com/problems/flipping-an-image/
+#Title: Flipping an Image
+#Difficulty: Easy
+#Language: Python3
+#Author: Pranay Kotian
 
 class Solution:
     def flipAndInvertImage(self, A: List[List[int]]) -> List[List[int]]:

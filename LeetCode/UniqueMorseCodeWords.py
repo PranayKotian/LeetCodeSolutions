@@ -1,8 +1,8 @@
-//https://leetcode.com/problems/unique-morse-code-words/
-//Title: Unique Morse Code Words
-//Difficulty: Easy
-//Language: Python3
-//Author: Pranay Kotian
+#https://leetcode.com/problems/unique-morse-code-words/
+#Title: Unique Morse Code Words
+#Difficulty: Easy
+#Language: Python3
+#Author: Pranay Kotian
 
 class Solution:
     def uniqueMorseRepresentations(self, words: List[str]) -> int:

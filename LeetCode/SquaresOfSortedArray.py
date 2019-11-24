@@ -1,8 +1,8 @@
-//https://leetcode.com/problems/squares-of-a-sorted-array/
-//Title: Squares of a Sorted Array
-//Difficulty: Easy
-//Language: Python3
-//Author: Pranay Kotian
+#https://leetcode.com/problems/squares-of-a-sorted-array/
+#Title: Squares of a Sorted Array
+#Difficulty: Easy
+#Language: Python3
+#Author: Pranay Kotian
 
 class Solution:
     def sortedSquares(self, A: List[int]) -> List[int]:

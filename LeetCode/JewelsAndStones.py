@@ -1,8 +1,8 @@
-//https://leetcode.com/problems/jewels-and-stones/
-//Title: Jewels and Stones
-//Difficulty: Easy
-//Language: Python3
-//Author: Pranay Kotian
+#https://leetcode.com/problems/jewels-and-stones/
+#Title: Jewels and Stones
+#Difficulty: Easy
+#Language: Python3
+#Author: Pranay Kotian
 
 class Solution:
     def numJewelsInStones(self, J: str, S: str) -> int:

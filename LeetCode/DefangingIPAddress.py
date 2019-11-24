@@ -1,8 +1,8 @@
-//https://leetcode.com/problems/defanging-an-ip-address/
-//Title: Defanging an IP Address
-//Difficulty: Easy
-//Language: Python3
-//Author: Pranay Kotian
+#https://leetcode.com/problems/defanging-an-ip-address/
+#Title: Defanging an IP Address
+#Difficulty: Easy
+#Language: Python3
+#Author: Pranay Kotian
 
 class Solution:
     def defangIPaddr(self, address: str) -> str:

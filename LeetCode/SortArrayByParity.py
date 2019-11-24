@@ -1,8 +1,8 @@
-//https://leetcode.com/problems/sort-array-by-parity/
-//Title: Sort Array By Parity
-//Difficulty: Easy
-//Language: Python3
-//Author: Pranay Kotian
+#https://leetcode.com/problems/sort-array-by-parity/
+#Title: Sort Array By Parity
+#Difficulty: Easy
+#Language: Python3
+#Author: Pranay Kotian
 
 class Solution:
     def sortArrayByParity(self, A: List[int]) -> List[int]:
