@@ -15,11 +15,11 @@ class Solution:
         
         sumLink = 0
         mag = 1 
-        while (not (l1 == None)) or (not (l2 == None)):
-            if not (l1 == None):
+        while l1 or l2:
+            if l1:
                 sumLink += mag * l1.val
                 l1 = l1.next
-            if not (l2 == None):
+            if l2:
                 sumLink += mag * l2.val
                 l2 = l2.next
             
