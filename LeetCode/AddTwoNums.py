@@ -13,6 +13,7 @@
 class Solution:
     def addTwoNumbers(self, l1: ListNode, l2: ListNode) -> ListNode:
         
+        #Sums the two numbers in the linked lists into an integer
         sumLink = 0
         mag = 1 
         while l1 or l2:
@@ -22,10 +23,12 @@ class Solution:
             if l2:
                 sumLink += mag * l2.val
                 l2 = l2.next
-            
             mag *= 10
         
+        #Converts integer to linked list to return
         root = n = ListNode(0)
+        #root points to the first element of the linked list
+        # therefore root.next will return the linked list (not including the initial node w/ 0)
         for i in str(sumLink)[::-1]:
             n.next = ListNode(int(i))
             n = n.next
