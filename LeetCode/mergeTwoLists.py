@@ -13,6 +13,28 @@
 class Solution:
     def mergeTwoLists(self, l1: ListNode, l2: ListNode) -> ListNode:
         root = n = ListNode(0)
+        while l1 and l2:
+            if (l1.val > l2.val):
+                n.next = ListNode(l2.val)
+                n = n.next
+                l2 = l2.next
+            else: #(l2.val > l1.val) or l2.val == l1.val
+                n.next = ListNode(l1.val)
+                n = n.next
+                l1 = l1.next
+        while l1:
+            n.next = ListNode(l1.val)
+            n = n.next
+            l1 = l1.next
+        while l2:
+            n.next = ListNode(l2.val)
+            n = n.next
+            l2 = l2.next
+                
+        return root.next
+
+        """
+        root = n = ListNode(0)
         while l1 or l2:
             if l1 and l2:
                 if (l1.val > l2.val):
@@ -39,6 +61,6 @@ class Solution:
                 n.next = ListNode(l2.val)
                 n = n.next
                 l2 = l2.next
-            
                 
         return root.next
+        """
