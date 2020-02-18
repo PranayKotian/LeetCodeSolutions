@@ -6,6 +6,7 @@
 
 class Solution:
     def removeElement(self, nums: List[int], val: int) -> int:
+        #Identical solution to remove duplicates problem
         i = 0 
         while (i < len(nums)):
             if (nums[i] == val):
@@ -13,3 +14,8 @@ class Solution:
             else:
                 i += 1 
         return i + 1
+
+        """
+        Runtime: 28 ms, faster than 84.57% of Python3 online submissions for Remove Element.
+		Memory Usage: 12.7 MB, less than 100.00% of Python3 online submissions for Remove Element.
+        """
