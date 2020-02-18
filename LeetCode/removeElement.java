@@ -23,5 +23,20 @@ class Solution {
         //Solution exceeds time limit when i is decremented by 1
         */
         
+        /*
+        int i = 0;
+        int len = nums.length; 
+        while (i < len) {
+            if (nums[i] == val) {
+                for (int j = i + 1; j < len; j++)
+                    nums[j - 1] = nums[j];
+            }
+            else
+                i += 1; 
+        }
+        return i + 1;
+
+        //Solution exceeds tie limit
+        */
     }
 }
