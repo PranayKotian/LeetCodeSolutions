@@ -25,3 +25,8 @@ class Solution:
             else:
                 return min
         return min
+
+        """
+        Runtime: 28 ms, faster than 94.51% of Python3 online submissions for First Missing Positive.
+        Memory Usage: 12.7 MB, less than 100.00% of Python3 online submissions for First Missing Positive.
+        """
