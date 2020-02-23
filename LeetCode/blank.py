@@ -10,5 +10,4 @@ JAVA COMMENTS
 //Title: 
 //Difficulty: 
 //Language: Java
-//Author: 
-//Notes: 
+//Author: Pranay Kotian

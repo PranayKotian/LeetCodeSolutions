@@ -31,12 +31,12 @@ class Solution {
                 for (int j = i + 1; j < len; j++)
                     nums[j - 1] = nums[j];
             }
-            else
+            elses
                 i += 1; 
         }
         return i + 1;
 
-        //Solution exceeds tie limit
+        //Solution exceeds time limit
         */
     }
 }
