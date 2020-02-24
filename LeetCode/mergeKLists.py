@@ -1,6 +1,6 @@
-#
-#Title: 
-#Difficulty:
+#https://leetcode.com/problems/merge-k-sorted-lists/
+#Title: Merge k Sorted Lists
+#Difficulty: Hard
 #Language: Python3
 #Author: Pranay Kotian
 
@@ -31,3 +31,8 @@ class Solution:
         
         #Returns sorted linked list
         return root.next
+
+        """
+        Runtime: 92 ms, faster than 95.97% of Python3 online submissions for Merge k Sorted Lists.
+        Memory Usage: 15.8 MB, less than 100.00% of Python3 online submissions for Merge k Sorted Lists.
+        """
