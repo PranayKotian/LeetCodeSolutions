@@ -12,4 +12,12 @@ class Solution:
                 return nums[i]
 
 
-     
+     """
+     ALTERNATE SOLUTION USING DICTIONARY
+     dupDict = {}
+        for i in nums:
+            if (i in dupDict):
+                return i
+            else:
+                dupDict[i] = 1
+     """
