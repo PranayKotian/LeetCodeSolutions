@@ -1,6 +1,6 @@
-#
-#Title: 
-#Difficulty:
+#https://leetcode.com/problems/reverse-string/
+#Title: Reverse String
+#Difficulty: Easy
 #Language: Python3
 #Author: Pranay Kotian
 
@@ -9,6 +9,8 @@ class Solution:
         """
         Do not return anything, modify s in-place instead.
         """
+
+        #Start and end variables
         st = 0
         ed = len(s) - 1
         
