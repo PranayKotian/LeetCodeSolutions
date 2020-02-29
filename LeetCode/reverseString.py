@@ -23,3 +23,6 @@ class Solution:
             #increments start/end variables
             st = st + 1
             ed = ed - 1
+
+        #SOLUTION 2:
+        #s.reverser()
