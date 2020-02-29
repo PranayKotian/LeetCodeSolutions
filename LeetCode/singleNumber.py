@@ -11,3 +11,6 @@ class Solution:
             if (i%2 == 0) and (nums[i] != nums[i+1]):
                 return nums[i]
         return nums[len(nums) - 1]
+
+        #ALTERNATE SOLUTION:
+        #return 2*sum(set(nums))-sum(nums)
