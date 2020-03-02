@@ -1,6 +1,11 @@
+#https://leetcode.com/problems/string-to-integer-atoi/
+#Title: String to Integer (atoi)
+#Difficulty: Medium
+#Language: Python3
+#Author: Pranay Kotian
+
 class Solution:
     def myAtoi(self, str: str) -> int:
-        
         #Checks for empty string input
         if (len(str) == 0):
             return 0
@@ -12,7 +17,7 @@ class Solution:
         str = str[i:]
         i = 0
         
-        #Checks if tring is now empty
+        #Checks if string is now empty
         if (not i < len(str)):
             return 0
         
@@ -42,3 +47,8 @@ class Solution:
             return 2**31 -1
         else:        
             return int(str) 
+
+
+        #SOLUTION can be improved by finding a better way to actively
+        # check whether the string is empty instead of using
+        # multiple checks after each step
