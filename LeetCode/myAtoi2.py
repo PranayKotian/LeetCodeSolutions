@@ -17,38 +17,44 @@ class Solution:
         str = str[i:]
         i = 0
         
-        #Checks if string is now empty
-        if (not i < len(str)):
+        #Checks if tring is now empty
+        if (len(str) == 0):
             return 0
         
         #Checks if number is negative
         i = 0
         if (str[0] == "-" or str[0] == "+"):
             i += 1
+            #Checks if string is now empty
+            if (len(str) == 1):
+                return 0
         
-        #Checks if string is now empty
-        if (not i < len(str)):
-            return 0
         #Checks if first non-sign char is a digit
+        
         if (not str[i].isdigit()):
             return 0
         
+        #Increments i until first non-digit character
         while(i < len(str)):
             if (str[i].isdigit()):
                 i += 1
             else:
                 break
         
+        #Removes trailing non-digit characters
         str = str[:i]
         
-        if (int(str) < -2**31):
+        #Checks upper and lower bounds for number
+        num = int(str)
+        if (num < -2**31):
             return -2**31
-        elif(int(str) > 2**31 -1):
+        elif(num > 2**31 -1):
             return 2**31 -1
         else:        
-            return int(str) 
+            return num 
 
-
-        #SOLUTION can be improved by finding a better way to actively
-        # check whether the string is empty instead of using
-        # multiple checks after each step
+        #SOLUTION optimized by reducing the number of times string splicing is used
+        '''
+		Runtime: 28 ms, faster than 89.05% of Python3 online submissions for String to Integer (atoi).
+		Memory Usage: 12.7 MB, less than 100.00% of Python3 online submissions for String to Integer (atoi).
+        '''
