@@ -12,6 +12,10 @@ class Solution:
             mult = -1
             x = -1 * x
         
+        #Checks for infinite loop condition for following while loop
+        if (x == 0):
+            return 0
+        
         #Removes trailing zeros
         while (x % 10 == 0):
             x = x // 10
@@ -21,8 +25,10 @@ class Solution:
         for i in range(len(str(x)) - 1, -1, -1):
             num += (x % 10) * (10**i)
             x = x // 10
-            
-        return num * mult
         
-        #PASSES test cases
-        #Exceeds time limit on final submission
+        #Bounds for integer values
+        num = num * mult
+        if (num > (2**31 - 1) or num < -2**31):
+            return 0
+        else:
+            return num
