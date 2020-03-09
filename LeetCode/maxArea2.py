@@ -1,6 +1,6 @@
-#
-#Title: 
-#Difficulty:
+#https://leetcode.com/problems/container-with-most-water/
+#Title: Container With Most Water
+#Difficulty: Medium
 #Language: Python3
 #Author: Pranay Kotian
 
@@ -32,7 +32,11 @@ class Solution:
                 maxVol = curVol
         
         return maxVol
-            
+        
+        """
+        Runtime: 116 ms, faster than 98.56% of Python3 online submissions for Container With Most Water.
+        Memory Usage: 14.3 MB, less than 86.32% of Python3 online submissions for Container With Most Water.
+        """
             
             
                 
