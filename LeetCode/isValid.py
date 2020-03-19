@@ -1,6 +1,6 @@
 #https://leetcode.com/problems/valid-parentheses/
 #Title: Valid Parentheses
-#Difficulty: East
+#Difficulty: Easy
 #Language: Python3
 #Author: Pranay Kotian
 
@@ -32,3 +32,8 @@ class Solution:
             return True
         else:
             return False
+
+        '''
+        Runtime: 24 ms, faster than 90.46% of Python3 online submissions for Valid Parentheses.
+        Memory Usage: 12.9 MB, less than 99.13% of Python3 online submissions for Valid Parentheses.
+        '''
