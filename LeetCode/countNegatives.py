@@ -1,6 +1,7 @@
 class Solution:
     def countNegatives(self, grid: List[List[int]]) -> int:
         """
+        BRUTE FORCE SOLUTION
         count = 0
         
         for i in grid:
@@ -10,6 +11,7 @@ class Solution:
                     
         return count
         """ 
+        
         
         count = 0
         rows = len(grid) 
@@ -28,4 +30,3 @@ class Solution:
             rows -= 1
         
         return count
-        
