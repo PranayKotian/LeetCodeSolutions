@@ -15,12 +15,21 @@ class Solution:
         #             return [i, j];
         #         j += 1
         
-        #HASH TABLE SOLUTION (find better code for duplicate num/compliment case)
-        n = len(nums)
-        for i in range(n):
-            comp = target - nums[i]
-            if (comp == nums[i]):
-                if (comp in nums[i+1:n]):
-                    return [i, nums[i+1:n].index(comp) + i + 1]
-            elif (comp in nums):
-                return [i, nums.index(comp)]
+        #NOT A HASH TABLE SOLUTION (find better code for duplicate num/compliment case)
+        # n = len(nums)
+        # for i in range(n):
+        #     comp = target - nums[i]
+        #     if (comp == nums[i]):
+        #         if (comp in nums[i+1:n]):
+        #             return [i, nums[i+1:n].index(comp) + i + 1]
+        #     elif (comp in nums):
+        #         return [i, nums.index(comp)]
+        
+        #HASH TABLE SOLUTION
+        #copy values into hash map
+        hashmap = {}
+        for i, val in enumerate(nums):
+            temp = target - val
+            if temp in hashmap:
+                return [hashmap[temp], i]
+            hashmap[val] = i
