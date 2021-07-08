@@ -13,6 +13,24 @@
 class Solution:
     def hasCycle(self, head: ListNode) -> bool:
         
+        #SLOW/FAST POINTER SOLUTION
+        #if the pointers ever meet that means there is a loop
+        #if both pointers reach the end that means there is no loop
+        slow = fast = head
+        
+        while slow and fast and fast.next:
+            slow = slow.next
+            fast = fast.next.next
+            if (slow == fast):
+                return True
+        return False
+
+        """
+        Time: O(n), Space: O(1)
+        Runtime: 56 ms, faster than 59.08% of Python3 online submissions for Linked List Cycle.
+        Memory Usage: 17.5 MB, less than 92.68% of Python3 online submissions for Linked List Cycle.
+        """
+
         #HASH TABLE SOLUTION
         """
         seen = set()
