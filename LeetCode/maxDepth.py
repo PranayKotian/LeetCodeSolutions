@@ -14,16 +14,17 @@ class Solution:
     def maxDepth(self, root: TreeNode) -> int:
         
         #recursive solution
-        if not root:
-            return 0
-        if (root.left == None and root.right == None):
-            return 1
-        elif (root.left == None):
-            return self.maxDepth(root.right) + 1
-        elif (root.right == None):
-            return self.maxDepth(root.left) + 1
-        else:
-            return max(self.maxDepth(root.left), self.maxDepth(root.right)) + 1
+        # if not root:
+        #     return 0
+        # if (root.left == None and root.right == None):
+        #     return 1
+        # elif (root.left == None):
+        #     return self.maxDepth(root.right) + 1
+        # elif (root.right == None):
+        #     return self.maxDepth(root.left) + 1
+        # else:
+        #     return max(self.maxDepth(root.left), self.maxDepth(root.right)) + 1
         
-        
-        
+        #IDENTICAL SOLUTION in one line
+        return max(self.maxDepth(root.left), self.maxDepth(root.right)) + 1 if root else 0
+        #(three middle if statements are not required)
