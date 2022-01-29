@@ -15,24 +15,23 @@ class Solution:
         if root is None:
             return []
         
-        res = [[root.val]]
+        res = []
         
         def bfs(rootslist):
-            temp = []
-            newrootslist = []
+            if rootslist == []:
+                return
             
+            add = []
+            newrootslist = []
             for node in rootslist:
+                add.append(node.val)
                 if (node.left is not None):
                     newrootslist.append (node.left)
-                    temp.append(node.left.val)
                 if (node.right is not None):
                     newrootslist.append (node.right)
-                    temp.append(node.right.val)
+            res.append(add)
             
-            if temp != []:
-                res.append(temp)
-            if newrootslist != []:
-                bfs(newrootslist)
+            bfs(newrootslist)
             
         bfs([root])
         return res
