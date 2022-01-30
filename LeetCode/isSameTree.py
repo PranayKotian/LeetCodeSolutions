@@ -1,5 +1,5 @@
 #https://leetcode.com/problems/same-tree/
-#Title: 100. Same Tree
+#100. Same Tree
 #Difficulty: Easy
 #Language: Python3
 #Author: Pranay Kotian
@@ -11,17 +11,21 @@
 #         self.left = left
 #         self.right = right
 class Solution:
-    def isSameTree(self, p: TreeNode, q: TreeNode) -> bool:
+    def isSameTree(self, p: Optional[TreeNode], q: Optional[TreeNode]) -> bool:
         
-        if not p and not q:
+        #EFFICIENT SOLUTION
+        if p and q:
+            return (p.val == q.val) and self.isSameTree(p.left,q.left) and self.isSameTree(p.right,q.right)
+        return p == q
+        
+        '''
+        #MY SOLUTION
+        if p is None and q is None:
             return True
-        elif not q:
+        elif p is None or q is None: 
             return False
-        elif not p:
+        elif p.val == q.val:
+            return self.isSameTree(p.left,q.left) and self.isSameTree(p.right,q.right)
+        else:
             return False
-        
-        if (p.val == q.val):
-            return self.isSameTree(p.left, q.left) and self.isSameTree(p.right, q.right)
-        else: #p.val != q.val
-            return False
-            
+        '''

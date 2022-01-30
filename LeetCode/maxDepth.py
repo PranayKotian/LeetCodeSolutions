@@ -11,20 +11,8 @@
 #         self.left = left
 #         self.right = right
 class Solution:
-    def maxDepth(self, root: TreeNode) -> int:
+    def maxDepth(self, root: Optional[TreeNode]) -> int:
+        if root is None:
+            return 0
         
-        #recursive solution
-        # if not root:
-        #     return 0
-        # if (root.left == None and root.right == None):
-        #     return 1
-        # elif (root.left == None):
-        #     return self.maxDepth(root.right) + 1
-        # elif (root.right == None):
-        #     return self.maxDepth(root.left) + 1
-        # else:
-        #     return max(self.maxDepth(root.left), self.maxDepth(root.right)) + 1
-        
-        #IDENTICAL SOLUTION in one line
-        return max(self.maxDepth(root.left), self.maxDepth(root.right)) + 1 if root else 0
-        #(three middle if statements are not required)
+        return 1 + max(self.maxDepth(root.left), self.maxDepth(root.right))

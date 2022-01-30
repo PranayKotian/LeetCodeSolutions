@@ -13,14 +13,23 @@
 class Solution:
     def invertTree(self, root: TreeNode) -> TreeNode:
         
-        '''
-        PSEUDOCODE
-        copy left node
-        left node now right node
-        copy backup of left node into right node
-        go down recursively
-        '''
+        def invert(node):
+            if node is None:
+                return
+
+            temp = node.left
+            node.left = node.right
+            node.right = temp
+
+            invert(node.left)
+            invert(node.right)
         
+        invert(root)
+        
+        return root
+
+        '''
+        #OLD SOLUTION
         if not root:
             return root
         
@@ -34,3 +43,4 @@ class Solution:
             self.invertTree(root.right)
             
         return root
+        '''
