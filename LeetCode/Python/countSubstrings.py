@@ -6,7 +6,6 @@
 
 class Solution:
     def countSubstrings(self, s: str) -> int:
-        
         self.count = 0
         
         def check(a,b):
