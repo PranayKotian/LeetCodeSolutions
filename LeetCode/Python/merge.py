@@ -1,5 +1,5 @@
 #https://leetcode.com/problems/merge-sorted-array/
-#Title: Merge Sorted Array
+#Title: 88. Merge Sorted Array
 #Difficulty: Easy
 #Language: Python
 #Author: Pranay Kotian
@@ -9,8 +9,8 @@ class Solution:
         """
         Do not return anything, modify nums1 in-place instead.
         """
-        
-        for i in range(m, len(nums1)):
+
+        for i in range(m, m+n):
             nums1[i] = nums2[i-m]
-        nums1.sort()
         
+        nums1.sort()
