@@ -1,7 +1,7 @@
 #https://leetcode.com/problems/reverse-string/
-#Title: Reverse String
+#Title: 344. Reverse String
 #Difficulty: Easy
-#Language: Python3
+#Language: Python
 #Author: Pranay Kotian
 
 class Solution:
@@ -9,20 +9,13 @@ class Solution:
         """
         Do not return anything, modify s in-place instead.
         """
-
-        #Start and end variables
-        st = 0
-        ed = len(s) - 1
+        temp = ""
+        l = 0
+        r = len(s) - 1
         
-        while (st < ed):
-            #Swaps values
-            temp = s[st]
-            s[st] = s[ed]
-            s[ed] = temp
-            
-            #increments start/end variables
-            st = st + 1
-            ed = ed - 1
-
-        #SOLUTION 2:
-        #s.reverser()
+        while l <= r:
+            temp = s[l]
+            s[l] = s[r]
+            s[r] = temp
+            l += 1
+            r -= 1
