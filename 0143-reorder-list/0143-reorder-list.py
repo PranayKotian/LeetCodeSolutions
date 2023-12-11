@@ -9,26 +9,22 @@ class Solution:
         Do not return anything, modify head in-place instead.
         """
         
-        #O(n) time O(n) space solution
-        q = deque()
-        while head:
-            q.append(head)
-            head = head.next
-                
-        cur = q.popleft()
-        res = cur
-        count = 0
-        while q:
-            if count%2 == 0: 
-                curnext = q.pop()    
-            else: 
-                curnext = q.popleft()
-            cur.next = curnext
-            cur = curnext
-            count += 1
-        cur.next = None
+        #Optimal solution: O(n) time O(1) space
+        #Find middle 
+        if not head: return []
+        slow, fast = head, head
+        while fast.next and fast.next.next:
+            slow = slow.next
+            fast = fast.next.next
+            
+        #Reverse second half
+        prev, cur = None, slow.next
+        while cur:
+            cur.next, cur, prev = prev, cur.next, cur
+        slow.next = None
         
-        #Alternate solution: O(n) time O(1) space
-        #Find middle
-        #Reverse second half 
         #Merge two halves
+        head1, head2 = head, prev
+        count = 0
+        while head2:
+            head1.next, head1, head2 = head2, head2, head1.next
