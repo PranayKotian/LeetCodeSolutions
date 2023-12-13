@@ -10,12 +10,14 @@ class Solution:
         
         def maxDepth(node):
             if node is None: return 0
-            node.val = 1 + max(maxDepth(node.left), maxDepth(node.right))
-            return node.val
+            return 1 + max(maxDepth(node.left), maxDepth(node.right))
         
-        if root is None:
-            return True
+        def balanceCheck(node):
+            if node is None:
+                return True
+            cur = abs(maxDepth(node.left) - maxDepth(node.right)) < 2
+            return cur and balanceCheck(node.right) and balanceCheck(node.left)
         
-        cur = abs(maxDepth(root.left) - maxDepth(root.right)) < 2
-        return cur and self.isBalanced(root.right) and self.isBalanced(root.left)
+        return balanceCheck(root)
+        
             
