@@ -6,18 +6,15 @@
 #         self.right = right
 class Solution:
     def isBalanced(self, root: Optional[TreeNode]) -> bool:
-        #Height of left and right subtrees should not be > 1
-        
+        #determine balance while calculating maxdepth
+        self.balanced = True
         def maxDepth(node):
             if node is None: return 0
-            return 1 + max(maxDepth(node.left), maxDepth(node.right))
+            left = maxDepth(node.left)
+            right = maxDepth(node.right)
+            if abs(left-right) >= 2:
+                self.balanced = False
+            return 1 + max(left,right)
+        maxDepth(root)
         
-        def balanceCheck(node):
-            if node is None:
-                return True
-            cur = abs(maxDepth(node.left) - maxDepth(node.right)) < 2
-            return cur and balanceCheck(node.right) and balanceCheck(node.left)
-        
-        return balanceCheck(root)
-        
-            
+        return self.balanced
