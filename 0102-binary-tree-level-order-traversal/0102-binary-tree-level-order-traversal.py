@@ -11,14 +11,13 @@ class Solution:
             return []
         
         res = []
-        stack = [root]
-        while stack:
+        q = deque([root])
+        while q:
             res.append([])
-            newStack = []
-            for node in stack:
+            for i in range(len(q)):
+                node = q.popleft()
                 res[-1].append(node.val)
-                if node.left: newStack.append(node.left)
-                if node.right: newStack.append(node.right)
-            stack = newStack
+                if node.left: q.append(node.left)
+                if node.right: q.append(node.right)
         
         return res
