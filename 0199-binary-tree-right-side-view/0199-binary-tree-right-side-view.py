@@ -7,20 +7,19 @@
 class Solution:
     def rightSideView(self, root: Optional[TreeNode]) -> List[int]:
         
-        #Solution 1:
-        #Time O(n) Space O(1)
+        #Solution 2: level order traversal
+        #take rightmost value of each level
         if root is None:
             return []
         
         res = []
-        
-        def explore(node, curLvl):
-            if node is None:
-                return
-            if curLvl > len(res):
-                res.append(node.val)
-            explore(node.right, curLvl+1)
-            explore(node.left, curLvl+1)
-        
-        explore(root, 1)
+        q = deque([root])
+        while q:
+            n = len(q)
+            for i in range(n):
+                node = q.popleft()
+                if i == n-1:
+                    res.append(node.val)
+                if node.left: q.append(node.left)
+                if node.right: q.append(node.right)
         return res
