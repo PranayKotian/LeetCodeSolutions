@@ -24,12 +24,11 @@ class Solution:
         def search(cur: 'TreeNode', parents: 'list', node: 'TreeNode'):
             if cur is None:
                 return
-            if node.val == cur.val:
+            elif node.val == cur.val:
                 return (parents + [cur])
-            
-            if search(cur.left, parents+[cur], node):
+            elif cur.val > node.val:
                 return search(cur.left, parents+[cur], node)
-            if search(cur.right, parents+[cur], node):
+            else:
                 return search(cur.right, parents+[cur], node)
         
         p1 = search(root, [], p)
