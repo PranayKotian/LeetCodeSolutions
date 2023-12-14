@@ -6,19 +6,19 @@
 #         self.right = right
 class Solution:
     def levelOrder(self, root: Optional[TreeNode]) -> List[List[int]]:
+        #Solution 1: stack solution
         if root is None:
             return []
         
         res = []
         stack = [root]
         while stack:
+            res.append([])
             newStack = []
-            addRes = []
             for node in stack:
-                addRes.append(node.val)
+                res[-1].append(node.val)
                 if node.left: newStack.append(node.left)
                 if node.right: newStack.append(node.right)
             stack = newStack
-            res.append(addRes)
         
         return res
