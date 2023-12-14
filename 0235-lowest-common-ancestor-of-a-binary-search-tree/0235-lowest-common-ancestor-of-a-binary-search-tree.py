@@ -7,24 +7,15 @@
 
 class Solution:
     def lowestCommonAncestor(self, root: 'TreeNode', p: 'TreeNode', q: 'TreeNode') -> 'TreeNode':
-        #Solution 2
-            #search for both nodes
-            #track parents of both nodes
-            #find the lowest parent
+        #Solution 3
+            #check for condition of lowest ancestor
         
-        def search(cur: 'TreeNode', parents: 'list', node: 'TreeNode'):
-            if cur is None:
-                return
-            elif node.val == cur.val:
-                return (parents + [cur])
-            elif cur.val > node.val:
-                return search(cur.left, parents+[cur], node)
+        cur = root
+        while cur is not None:
+            if p.val < cur.val and q.val < cur.val:
+                cur = cur.left
+            elif p.val > cur.val and q.val > cur.val:
+                cur = cur.right
             else:
-                return search(cur.right, parents+[cur], node)
+                return cur
         
-        p1 = search(root, [], p)
-        q1 = search(root, [], q)
-        i = 0
-        while i < min(len(p1),len(q1)) and p1[i].val == q1[i].val:
-            i += 1
-        return p1[i-1]
