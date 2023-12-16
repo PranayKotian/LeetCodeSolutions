@@ -3,8 +3,7 @@ class Solution:
         res = []
         
         def backtrack(i, arr):
-            if i == len(nums)-1:
-                res.append(arr + [nums[i]])
+            if i == len(nums):
                 res.append(arr)
             else:
                 backtrack(i+1, arr+[nums[i]])
