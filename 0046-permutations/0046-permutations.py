@@ -7,9 +7,9 @@ class Solution:
                 res.append(cur)
             
             for i in range(len(leftover)):
-                temp = leftover.copy()
-                temp.remove(leftover[i])
-                ordering(cur+[leftover[i]], temp)
+                digit = leftover.pop(0)
+                ordering(cur+[digit], leftover)
+                leftover.append(digit)
         
         ordering([], nums)
         return res
