@@ -6,11 +6,14 @@ class Solution:
         
         def findSubsets(i, arr):
             if i == len(nums):
-                if arr not in subsets:
-                    subsets.append(arr)
+                subsets.append(arr)
                 return
+            
             findSubsets(i+1, arr+[nums[i]])
-            findSubsets(i+1, arr)
+            cur = nums[i]
+            while i != len(nums) and nums[i] == cur:
+                i += 1
+            findSubsets(i, arr)
         
         findSubsets(0, [])
         
