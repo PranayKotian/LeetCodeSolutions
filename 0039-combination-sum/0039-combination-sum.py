@@ -3,16 +3,14 @@ class Solution:
         
         res = []
         def backtrack(i, arr):
-            leftover = target-sum(arr)
-            
-            if leftover == 0:
+            if sum(arr) == target:
                 res.append(arr)
                 return
-            if leftover < 0 or i == len(candidates):
+            if sum(arr) > target:
                 return
             
-            for n in range(0, leftover//candidates[i]+1):
-                backtrack(i+1, arr + [candidates[i]]*n)
+            for j in range(i, len(candidates)):
+                backtrack(j, arr + [candidates[j]])
         
         backtrack(0, [])
         return res
