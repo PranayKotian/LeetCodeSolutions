@@ -5,16 +5,14 @@ class Solution:
         
         def findPalindromes(cur, i):
             if i == len(s):
-                if cur[-1] == cur[-1][::-1]:
-                    res.append(cur)
+                res.append(cur)
                 return
             
-            if cur[-1] == cur[-1][::-1]:
-                findPalindromes(cur + [s[i]], i+1)
+            for j in range(i,len(s)):
+                temp = s[i:j+1]
+                if temp == temp[::-1]:
+                    findPalindromes(cur+[temp], j+1) 
             
-            cur[-1] += s[i]
-            findPalindromes(cur, i+1)
-        
-        findPalindromes([s[0]],1)
+        findPalindromes([],0)
         
         return res
