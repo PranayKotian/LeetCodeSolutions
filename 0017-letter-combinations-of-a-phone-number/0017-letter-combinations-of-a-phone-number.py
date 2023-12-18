@@ -1,9 +1,6 @@
 class Solution:
     def letterCombinations(self, digits: str) -> List[str]:
         
-        if digits == "": 
-            return []
-        
         numToLetter = {
             "2": ["a", "b", "c"],
             "3": ["d", "e", "f"],
@@ -24,5 +21,6 @@ class Solution:
             for c in numToLetter[digits[i]]:
                 dfs(cur+c, i+1)
             
-        dfs("", 0)
+        if digits:
+            dfs("", 0)
         return res
