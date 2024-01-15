@@ -1,17 +1,18 @@
-class KthLargest:
-    #Inefficient solution that sorts the list each time a number is added
-    #On add(), binary search can be used to insert the new number for efficiency
-    #Class can also simply track the three largest numbers and ignore the rest
-    
-    def __init__(self, k: int, nums: List[int]):
+class KthLargest:    
+    def __init__(self, k: int, nums: List[int]):        
         self.kth = k
-        self.nums = sorted(nums)
+        self.minHeap = nums
+        heapq.heapify(self.minHeap)
+        while len(self.minHeap) > k:
+            heapq.heappop(self.minHeap)
 
     def add(self, val: int) -> int:
-        self.nums.append(val)
-        self.nums.sort()
-        return self.nums[-self.kth]
-
+        heapq.heappush(self.minHeap, val)
+        while len(self.minHeap) > self.kth:
+            heapq.heappop(self.minHeap)
+        
+        return self.minHeap[0]
+        
 # Your KthLargest object will be instantiated and called as such:
 # obj = KthLargest(k, nums)
 # param_1 = obj.add(val)
