@@ -17,8 +17,9 @@ class Solution:
                 cur = cur.left
             cur = stack.pop()
             res.append(cur.val)
+            k -= 1
             cur = cur.right
-            if len(res) == k:
+            if k == 0:
                 return res[-1]
         
         #Error return value
