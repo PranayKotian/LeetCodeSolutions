@@ -2,24 +2,25 @@ class Solution:
     def canFinish(self, numCourses: int, prerequisites: List[List[int]]) -> bool:
         
         #BFS solution 
-        prereqs = {i:set() for i in range(numCourses)}
-        for course,pre in prerequisites:
-            prereqs[course].add(pre)
+        reqs = {i:set() for i in range(numCourses)}
+        for c,p in prerequisites:
+            reqs[c].add(p)
         
-        nottaken = set([i for i in range(numCourses)])
         taken = set()
-        updated = True
+        for c in range(numCourses):
+            if c not in reqs: #course doesnt have any reqs
+                taken.add(c)
         
-        while updated:
+        update = True
+        while update:
             start = len(taken)
-            for c in nottaken.copy():
-                if prereqs[c] == set():
+            for c in reqs.copy():
+                if c not in reqs:
+                    continue
+                if taken >= reqs[c]:
+                    del reqs[c]
                     taken.add(c)
-                    nottaken.remove(c)
-                    for c1 in prereqs:
-                        if c in prereqs[c1]:
-                            prereqs[c1].remove(c)
             if start == len(taken):
-                updated = False
+                update = False
         
         return len(taken) == numCourses
