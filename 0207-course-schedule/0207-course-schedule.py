@@ -2,9 +2,12 @@ class Solution:
     def canFinish(self, numCourses: int, prerequisites: List[List[int]]) -> bool:
         
         #BFS solution 
-        reqs = {i:set() for i in range(numCourses)}
+        reqs = {}
         for c,p in prerequisites:
-            reqs[c].add(p)
+            if c not in reqs:
+                reqs[c] = set([p])
+            else:
+                reqs[c].add(p)
         
         taken = set()
         for c in range(numCourses):
