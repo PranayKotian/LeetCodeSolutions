@@ -1,29 +1,25 @@
 class Solution:
     def canFinish(self, numCourses: int, prerequisites: List[List[int]]) -> bool:
-        
-        #BFS solution 
-        reqs = {}
+        #Recursive DFS
+        reqs = {i:[] for i in range(numCourses)}
         for c,p in prerequisites:
-            if c not in reqs:
-                reqs[c] = set([p])
-            else:
-                reqs[c].add(p)
+            reqs[c].append(p)
         
-        taken = set()
-        for c in range(numCourses):
-            if c not in reqs: #course doesnt have any reqs
-                taken.add(c)
+        visited = set()
+        def dfs(crs):
+            if crs in visited:
+                return False
+            if reqs[crs] == []:
+                return True
+            
+            visited.add(crs)
+            for pre in reqs[crs]:
+                if dfs(pre) == False: return False
+            visited.remove(crs)
+            reqs[crs] = []
+            
+            return True
         
-        update = True
-        while update:
-            start = len(taken)
-            for c in reqs.copy():
-                if c not in reqs:
-                    continue
-                if taken >= reqs[c]:
-                    del reqs[c]
-                    taken.add(c)
-            if start == len(taken):
-                update = False
-        
-        return len(taken) == numCourses
+        for crs in reqs:
+            if dfs(crs) == False: return False
+        return True
