@@ -11,22 +11,17 @@ class Solution:
         if node is None:
             return None
         
-        startToEnd = {}
+        copy = {node: Node(node.val)}
         stack = [node]
         
-        #Copy nodes
+        #Copy nodes and connections
         while stack:
             for i in range(len(stack)):
                 n = stack.pop()
-                if n not in startToEnd:
-                    startToEnd[n] = Node(n.val)
                 for nei in n.neighbors:
-                    if nei not in startToEnd:
+                    if nei not in copy:
+                        copy[nei] = Node(nei.val)
                         stack.append(nei)
+                    copy[n].neighbors.append(copy[nei])
         
-        #Copy connections
-        for n in startToEnd:
-            for nei in n.neighbors:
-                startToEnd[n].neighbors.append(startToEnd[nei])
-        
-        return startToEnd[node]
+        return copy[node]
