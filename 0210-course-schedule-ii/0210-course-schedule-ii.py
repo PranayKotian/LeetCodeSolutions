@@ -1,7 +1,6 @@
 class Solution:
     def findOrder(self, numCourses: int, prerequisites: List[List[int]]) -> List[int]:
-        
-        #BFS solution
+        #Iterative BFS solution
         req = {i:set() for i in range(numCourses)}
         for crs,pre in prerequisites:
             req[crs].add(pre)
@@ -11,8 +10,6 @@ class Solution:
         while True:
             start = len(res)
             for c in req.copy():
-                if c not in req:
-                    continue
                 if req[c] == set():
                     res.append(c)
                     del req[c]
