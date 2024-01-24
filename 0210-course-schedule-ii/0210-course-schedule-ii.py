@@ -1,23 +1,26 @@
 class Solution:
     def findOrder(self, numCourses: int, prerequisites: List[List[int]]) -> List[int]:
-        #Iterative BFS solution
-        req = {i:set() for i in range(numCourses)}
+        #Topological sort solution (BFS)
+        req = {i:set() for i in range(numCourses)} #prereq: list of next courses
+        indegree = numCourses*[0]
+        
         for crs,pre in prerequisites:
-            req[crs].add(pre)
+            req[pre].add(crs)
+            indegree[crs] += 1
+        
+        q = deque()
+        for c in range(numCourses):
+            if indegree[c] == 0:
+                q.append(c)
         
         res = []
-        
-        while True:
-            start = len(res)
-            for c in req.copy():
-                if req[c] == set():
-                    res.append(c)
-                    del req[c]
-                    for c1 in req:
-                        if c in req[c1]:
-                            req[c1].remove(c)
-            if start == len(res):
-                break
+        while q:
+            cur = q.pop()
+            res.append(cur)
+            for nextCrs in req[cur]:
+                indegree[nextCrs] -= 1
+                if indegree[nextCrs] == 0:
+                    q.append(nextCrs)
         
         if len(res) == numCourses:
             return res
