@@ -18,13 +18,13 @@ class LRUCache:
         self.MRU.prev = self.LRU
 
     def remove(self, node):
-        node.prev.next, node.next.prev = node.next, node.prev
+        prev, nxt = node.prev, node.next
+        prev.next, nxt.prev = nxt, prev
         
     def insert(self,node):
-        node.next = self.MRU
-        self.MRU.prev.next = node
-        node.prev = self.MRU.prev
-        self.MRU.prev = node
+        prev, nxt = self.MRU.prev, self.MRU
+        prev.next = nxt.prev = node
+        node.prev, node.next = prev, nxt
         
     def get(self, key: int) -> int:
         if key in self.cache:
@@ -38,7 +38,7 @@ class LRUCache:
             self.remove(self.cache[key])
         self.cache[key] = Node(key,value)
         self.insert(self.cache[key])
-        
+                
         if len(self.cache) > self.cap:
             LRU = self.LRU.next
             del self.cache[LRU.key]
