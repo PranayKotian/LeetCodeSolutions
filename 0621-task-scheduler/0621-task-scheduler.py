@@ -1,10 +1,10 @@
 class Solution:
     def leastInterval(self, tasks: List[str], n: int) -> int:
         
+        #Max Heap Solution
+        #Time: O(n)
         count = Counter(tasks)
-        maxHeap = []
-        for t in count:
-            maxHeap.append(-count[t])
+        maxHeap = [-cnt for cnt in count.values()]
         heapq.heapify(maxHeap)
         
         q = deque()
@@ -13,11 +13,10 @@ class Solution:
         while maxHeap or q:
             time += 1
             if maxHeap:
-                task = heapq.heappop(maxHeap)
-                if task != -1:
-                    q.append((time+n, task+1))
+                task = 1 + heapq.heappop(maxHeap)
+                if task:
+                    q.append([time+n, task])
             if q and q[0][0] == time:
-                newtask = q.popleft()[1]
-                heapq.heappush(maxHeap, newtask)
+                heapq.heappush(maxHeap, q.popleft()[1])
         
         return time
