@@ -5,12 +5,10 @@ class Solution:
         
         res = nums[0]
         cur = 0
-        l = 0
         for r in range(len(nums)):
+            if cur < 0:
+                cur = 0
             cur += nums[r]
             res = max(res,cur)
-            while cur < 0 and l <= r:
-                cur -= nums[l]
-                l += 1
         
         return res
