@@ -3,7 +3,6 @@ class Solution:
         #Greedy solution
         #Time: O(n) Space: O(1)
         
-        
         res = nums[0]
         cur = 0
         l = 0
@@ -15,5 +14,3 @@ class Solution:
                 l += 1
         
         return res
-                
-        
