@@ -3,7 +3,7 @@ class Solution:
         
         #Greedy solution
         #Time: O(n) Space: O(n)
-        arr = [0 for i in range(len(target))]
+        arr = [0, 0, 0]
         
         for trip in triplets:
             valid = []
