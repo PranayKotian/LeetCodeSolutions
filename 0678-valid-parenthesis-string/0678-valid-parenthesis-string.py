@@ -1,6 +1,8 @@
 class Solution:
     def checkValidString(self, s: str) -> bool:
         
+        #Greedy solution
+        #Time: O(n) Space: O(2)
         leftMin = 0
         leftMax = 0
         
@@ -19,4 +21,4 @@ class Solution:
             if leftMin < 0:
                 leftMin = 0
         
-        return 0 in range(leftMin,leftMax+1)
+        return leftMin == 0
