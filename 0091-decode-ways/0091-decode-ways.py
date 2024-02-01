@@ -11,7 +11,7 @@ class Solution:
         for i in range(1,len(s)):
             if s[i] in validNums:
                 arr[2] += arr[1]
-            if s[i-1:i+1] in validNums:
+            if s[i-1]+s[i] in validNums:
                 arr[2] += arr[0]
             arr = [arr[1], arr[2], 0]
         return arr[1]
