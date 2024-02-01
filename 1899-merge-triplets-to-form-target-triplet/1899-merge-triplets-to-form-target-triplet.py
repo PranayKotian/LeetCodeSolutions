@@ -1,20 +1,14 @@
 class Solution:
     def mergeTriplets(self, triplets: List[List[int]], target: List[int]) -> bool:
-        
-        #Greedy solution
-        #Time: O(n) Space: O(n)
-        arr = [0, 0, 0]
+        #Greedy solution (less generalized solution)
+        #Time: O(n) Space: O(1) 
+        good = set()
         
         for trip in triplets:
-            valid = []
+            if trip[0] > target[0] or trip[1] > target[1] or trip[2] > target[2]:
+                continue
             for i,v in enumerate(trip):
-                if v > target[i]:
-                    valid = []
-                    break
                 if v == target[i]:
-                    valid.append(i)
-            for i in valid:
-                arr[i] = 1
+                    good.add(i)
         
-        return sum(arr) == 3
-                
+        return len(good) == 3
