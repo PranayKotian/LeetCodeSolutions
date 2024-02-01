@@ -1,9 +1,11 @@
 class Solution:
     def isNStraightHand(self, hand: List[int], groupSize: int) -> bool:
-        
+        #Inefficient solution
+        #Time: O(n^2) Space: O(n)
         if len(hand) % groupSize != 0:
             return False
         
+        #O(nlogn) operation
         hand.sort()
         
         while hand:
@@ -12,5 +14,5 @@ class Solution:
                 minVal += 1
                 if minVal not in hand:
                     return False
-                hand.remove(minVal)
+                hand.remove(minVal) #O(n) operation
         return True
