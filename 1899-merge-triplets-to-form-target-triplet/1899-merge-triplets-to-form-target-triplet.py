@@ -6,14 +6,15 @@ class Solution:
         arr = [0 for i in range(len(target))]
         
         for trip in triplets:
-            valid = True
+            valid = []
             for i,v in enumerate(trip):
                 if v > target[i]:
-                    valid = False
-            if valid:
-                for i,v in enumerate(trip):
-                    if v == target[i]:
-                        arr[i] = 1
-
+                    valid = []
+                    break
+                if v == target[i]:
+                    valid.append(i)
+            for i in valid:
+                arr[i] = 1
+        
         return sum(arr) == 3
                 
