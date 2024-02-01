@@ -9,12 +9,14 @@ class Solution:
                 leftMin += 1
                 leftMax += 1
             if l == "*":
-                leftMin = max(0, leftMin-1)
+                leftMin -= 1
                 leftMax += 1
             if l == ")":
-                leftMin = max(0, leftMin-1)
+                leftMin -= 1
                 leftMax -= 1
             if leftMax < 0:
                 return False
+            if leftMin < 0:
+                leftMin = 0
         
         return 0 in range(leftMin,leftMax+1)
