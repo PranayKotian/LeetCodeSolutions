@@ -4,9 +4,9 @@ class Solution:
         def dfs(w):
             if w in wordDict:
                 return True
-            for i in range(len(w)):
-                if w[:i] in wordDict:
-                    if dfs(w[i:]):
+            for word in wordDict:
+                if w[:len(word)] == word:
+                    if dfs(w[len(word):]):
                         return True
             return False
         
