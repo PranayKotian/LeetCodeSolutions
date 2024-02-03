@@ -1,25 +1,21 @@
 class Solution:
     def findTargetSumWays(self, nums: List[int], target: int) -> int:
         #Recursive solution with caching
-        #Time: Space:
+        #Time: O(n*t) Space: O(n*t)
+        #(where t = all possible expression sums from the nums array)
         
         cache = {}
         def explore(i, curTar):
-            if i == len(nums)-1:
-                if nums[i] == 0 and curTar == 0:
-                    return 2
-                if nums[i] == curTar or nums[i] == -curTar:
+            if i == len(nums):
+                if curTar == 0:
                     return 1
                 else:
                     return 0
             if (i,curTar) in cache:
                 return cache[(i,curTar)]
-            
-            p1 = explore(i+1, curTar+nums[i])
-            p2 = explore(i+1, curTar-nums[i])
-            cache[(i,curTar)] = p1+p2
-            
-            return p1 + p2
+
+            cache[(i,curTar)] = explore(i+1, curTar+nums[i]) + explore(i+1, curTar-nums[i])
+            return cache[(i,curTar)]
         
         return explore(0, target)
         
