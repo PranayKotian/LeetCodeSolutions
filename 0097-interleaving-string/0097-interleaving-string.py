@@ -1,32 +1,5 @@
 class Solution:
     def isInterleave(self, s1: str, s2: str, s3: str) -> bool:
-        #Solution 2: Recursive solution (optimized)
-        #Time: O(n) Space: O(1?)
-        #(where n == len(s3))
-        
-        l1,l2,l3 = len(s1),len(s2),len(s3)
-        if l3 != l1 + l2:
-            return False
-        
-        @lru_cache(None)
-        def explore(idx1, idx2, idx3):
-            if idx1 == l1 and idx2 == l2 and idx3 == l3:
-                return True
-            if idx1 == l1:
-                return s2[idx2:] == s3[idx3:]
-            if idx2 == l2:
-                return s1[idx1:] == s3[idx3:]
-
-            p1 = p2 = False
-            if s3[idx3] == s1[idx1]:
-                p1 = explore(idx1+1, idx2, idx3+1)
-            if s3[idx3] == s2[idx2]:
-                p2 = explore(idx1, idx2+1, idx3+1)
-            return p1 or p2
-        
-        return explore(0, 0, 0)
-        
-        """
         #Solution 1: Recursive solution with string splicing
         #Time: O(n) Space: O(1?)
         #(where n == len(s3))
@@ -35,6 +8,7 @@ class Solution:
         if len(s3) != len(s1) + len(s2):
             return False
         
+        @lru_cache(None)
         def explore(str1, str2, str3):
             if str1 == "" and str2 == "" and str3 == "":
                 return True
@@ -52,4 +26,3 @@ class Solution:
             return p1 or p2
         
         return explore(s1, s2, s3)
-        """
