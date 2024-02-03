@@ -6,8 +6,8 @@ class Solution:
         maxProfit = 0
         curmin = prices[0]
         
-        for i in range(1,len(prices)):
-            maxProfit = max(maxProfit, prices[i]-curmin)
-            curmin = min(curmin, prices[i])
+        for p in prices[1:]:
+            maxProfit = max(maxProfit, p-curmin)
+            curmin = min(curmin, p)
         
         return maxProfit
