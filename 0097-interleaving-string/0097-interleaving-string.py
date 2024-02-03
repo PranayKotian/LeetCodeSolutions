@@ -8,14 +8,15 @@ class Solution:
         if l3 != l1 + l2:
             return False
         
-        @lru_cache(None)
+        cache = {}
         def explore(idx1, idx2, idx3):
             if idx1 == l1 and idx2 == l2 and idx3 == l3:
                 return True
-            
-            p1 = idx1!=l1 and s3[idx3] == s1[idx1] and explore(idx1+1, idx2, idx3+1)
-            p2 = idx2!=l2 and s3[idx3] == s2[idx2] and explore(idx1, idx2+1, idx3+1)
-            return p1 or p2
+            if (idx1,idx2,idx3) not in cache:
+                p1 = idx1!=l1 and s3[idx3] == s1[idx1] and explore(idx1+1, idx2, idx3+1)
+                p2 = idx2!=l2 and s3[idx3] == s2[idx2] and explore(idx1, idx2+1, idx3+1)
+                cache[(idx1,idx2,idx3)] = p1 or p2
+            return cache[(idx1,idx2,idx3)]
         
         return explore(0, 0, 0)
         
