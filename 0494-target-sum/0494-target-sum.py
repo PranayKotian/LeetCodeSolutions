@@ -3,7 +3,7 @@ class Solution:
         #Recursive solution with caching
         #Time: Space:
         
-        @lru_cache(None)
+        cache = {}
         def explore(i, curTar):
             if i == len(nums)-1:
                 if nums[i] == 0 and curTar == 0:
@@ -12,10 +12,13 @@ class Solution:
                     return 1
                 else:
                     return 0
+            if (i,curTar) in cache:
+                return cache[(i,curTar)]
             
             p1 = explore(i+1, curTar+nums[i])
             p2 = explore(i+1, curTar-nums[i])
-
+            cache[(i,curTar)] = p1+p2
+            
             return p1 + p2
         
         return explore(0, target)
