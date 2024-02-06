@@ -6,8 +6,6 @@ class Solution:
         
         ROWS = len(matrix)
         COLS = len(matrix[0])
-        
-        dp = [[1 for _ in range(COLS)] for _ in range(ROWS)]
         cache = {}
         
         def dfs(r,c,prev):
