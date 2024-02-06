@@ -7,9 +7,9 @@ class Solution:
             return False
         
         target = sum(nums)//2
-        sums = set([0, nums[0]])
+        sums = set([0])
         
-        for n in nums[1:]:
+        for n in nums:
             for s in sums.copy():
                 sums.add(s+n)
             if target in sums:
