@@ -1,0 +1,35 @@
+class Solution:
+    def numDistinct(self, s: str, t: str) -> int:
+        
+        #Solution 2: Recursive w/ lazy caching
+        #Time: Space:
+        
+        @lru_cache(None)
+        def backtrack(s1,t1):
+            if t1 == "":
+                return 1
+            if s1 == "":
+                return 0
+            
+            if s1[0] != t1[0]:
+                return backtrack(s1[1:],t1)
+            else:
+                return backtrack(s1[1:],t1[1:]) + backtrack(s1[1:],t1)
+        
+        return backtrack(s,t)
+        
+        """
+        #Solution 1: Recursive solution
+        #Time: O(2^n) Space: O(n)
+        #(Time Limit Exceeded 51/65 passed)
+        
+        if t == "":
+            return 1
+        if s == "":
+            return 0
+        
+        if s[0] != t[0]:
+            return self.numDistinct(s[1:],t)
+        else:
+            return self.numDistinct(s[1:],t[1:]) + self.numDistinct(s[1:],t)
+        """
