@@ -1,5 +1,8 @@
 class MyHashSet:
-
+    
+    #Solution 1: Lists (Inefficient Solution)
+    #Time: O(n) Space: O(n)
+    
     def __init__(self):
         self.keys = []
 
@@ -13,7 +16,7 @@ class MyHashSet:
 
     def contains(self, key: int) -> bool:
         return key in self.keys
-
+    
 
 # Your MyHashSet object will be instantiated and called as such:
 # obj = MyHashSet()
