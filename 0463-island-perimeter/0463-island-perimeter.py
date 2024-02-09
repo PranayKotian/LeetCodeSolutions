@@ -2,7 +2,7 @@ class Solution:
     def islandPerimeter(self, grid: List[List[int]]) -> int:
         
         #Solution 1: Recursive DFS
-        #Time: O(n*m) Space: O(1)
+        #Time: O(n*m) Space: O(n*m)
         
         ROWS = len(grid)
         COLS = len(grid[0])
@@ -19,4 +19,3 @@ class Solution:
             for j in range(COLS):
                 if grid[i][j] == 1:
                     return dfs(i,j)
-                    
