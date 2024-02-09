@@ -4,18 +4,18 @@ class MyHashSet:
     #Time: O(n) Space: O(n)
     
     def __init__(self):
-        self.keys = []
+        self.arr = []
 
     def add(self, key: int) -> None:
-        if key not in self.keys:
-            self.keys.append(key)
+        if key not in self.arr:
+            self.arr.append(key)
 
     def remove(self, key: int) -> None:
-        if key in self.keys:
-            self.keys.remove(key)
+        if key in self.arr:
+            self.arr.remove(key)
 
     def contains(self, key: int) -> bool:
-        return key in self.keys
+        return key in self.arr
     
 
 # Your MyHashSet object will be instantiated and called as such:
