@@ -1,12 +1,10 @@
 class Solution:
     def countSubIslands(self, grid1: List[List[int]], grid2: List[List[int]]) -> int:
         
-        #Iterate through grid2
-        #If grid2 square is island and grid1 is island
-        # subisland += 1
-        # dfs on grid2 to mark entire island
+        #Solution 1: DFS w/ tracking
+        #Time: O(n*m) Space: O(n*m)
         
-        subIslands = 0
+        res = 0
         ROWS = len(grid1)
         COLS = len(grid1[0])
         
@@ -27,6 +25,6 @@ class Solution:
             for j in range(COLS):
                 if grid1[i][j] == 1 and grid2[i][j] == 1:
                     if dfs(i,j):
-                        subIslands += 1
+                        res += 1
 
-        return subIslands
+        return res
