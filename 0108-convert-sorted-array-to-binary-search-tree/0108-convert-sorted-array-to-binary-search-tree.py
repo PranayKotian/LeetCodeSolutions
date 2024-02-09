@@ -7,10 +7,13 @@
 class Solution:
     def sortedArrayToBST(self, nums: List[int]) -> Optional[TreeNode]:
         
-        #Solution 1: Recursive w/ minimal lines
-        #Time: O(n) Space: O(n)
+        #Solution 1: Recursive Solution
+        #Time: O(n) Space: O(logn)
         
-        if nums == []: return None
+        if nums == []: 
+            return None
         m = len(nums)//2
-        root = TreeNode(nums[m], self.sortedArrayToBST(nums[:m]), self.sortedArrayToBST(nums[m+1:]))
+        root = TreeNode(nums[m])
+        root.left = self.sortedArrayToBST(nums[:m])
+        root.right = self.sortedArrayToBST(nums[m+1:])
         return root
