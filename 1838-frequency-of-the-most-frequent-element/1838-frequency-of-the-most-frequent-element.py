@@ -14,9 +14,11 @@ class Solution:
                 res = max(res, r-l+1)
                 l -= 1
                 cur -= nums[r]-nums[l]
+            if l == -1: 
+                return res
             while cur < 0:
                 prev = nums[r]
                 r -= 1
                 cur += (r-l+1)*(prev-nums[r])
         
-        return res
+        return -1
