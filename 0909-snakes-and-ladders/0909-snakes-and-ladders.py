@@ -1,7 +1,7 @@
 class Solution:
     def snakesAndLadders(self, board: List[List[int]]) -> int:
         
-        #Solution 1: Dyanmic Programming
+        #Solution 1: Dyanmic Programming + BFS
         #Time: O(n^2) Space: O(n^2)
         
         n = len(board)
@@ -24,8 +24,7 @@ class Solution:
                     minmoves[j] = minmoves[i]+1
                     explore(j)
         
-        for a in range(n**2):
-            explore(a)
+        explore(0)
         
         if minmoves[-1] == 21**2: return -1
         return minmoves[-1]
