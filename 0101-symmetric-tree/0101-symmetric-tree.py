@@ -7,8 +7,21 @@
 class Solution:
     def isSymmetric(self, root: Optional[TreeNode]) -> bool:
         
+        #Solution 2: Recursive 2-Way DFS
+        #Time: O(n) Space: O(h)
+        
+        def dfs(left, right):
+            if left is None and right is None:
+                return True
+            if left is None or right is None:
+                return False
+            return left.val == right.val and dfs(left.left, right.right) and dfs(left.right, right.left)
+        
+        return dfs(root.left, root.right)
+        
+        """
         #Solution 1: Level Order Traversal
-        #Time: O(n) Space: O(n)
+        #Time: O(n) Space: O(2n)
         
         level = [root]
         vals = []
@@ -29,3 +42,4 @@ class Solution:
             level = newLvl
             
         return True
+        """
