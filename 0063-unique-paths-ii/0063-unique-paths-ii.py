@@ -1,6 +1,29 @@
 class Solution:
     def uniquePathsWithObstacles(self, obstacleGrid: List[List[int]]) -> int:
         
+        #Solution 2: 2D Dynamic Programming Solution (w/ Less Memory)
+        #Time: O(n*m)
+        #Memo: O(n)
+        
+        ROWS = len(obstacleGrid)
+        COLS = len(obstacleGrid[0])
+        
+        arr = [0 for _ in range(COLS)]
+        for c in range(COLS):
+            if obstacleGrid[0][c] == 1:
+                break
+            arr[c] = 1
+        
+        for r in range(1,ROWS):
+            for c in range(COLS):
+                if obstacleGrid[r][c] == 1:
+                    arr[c] = 0
+                elif c != 0:
+                    arr[c] += arr[c-1]
+        
+        return arr[-1]
+    
+        """
         #Solution 1: 2D Dynamic Programming Solution
         #Time: O(n*m)
         #Memo: O(n*m)
@@ -25,3 +48,4 @@ class Solution:
                     arr[r][c] = arr[r-1][c] + arr[r][c-1]
         
         return arr[-1][-1]
+        """
