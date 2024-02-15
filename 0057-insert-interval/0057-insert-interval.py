@@ -5,23 +5,22 @@ class Solution:
         #Time: O(n) Space: O(n)
         
         res = []
-        start,end = newInterval
         added = False
         
         for i in intervals:
             if added:
                 res.append(i)
-            elif end < i[0]:
-                res.append([start,end])
+            elif newInterval[1] < i[0]:
+                res.append(newInterval)
                 res.append(i)
                 added = True
-            elif start > i[1]:
+            elif newInterval[0] > i[1]:
                 res.append(i)
-            if start >= i[0] and start <= i[1]:
-                start = i[0]
-            if end >= i[0] and end <= i[1]:
-                end = i[1]
+            if newInterval[0] >= i[0] and newInterval[0] <= i[1]:
+                newInterval[0] = i[0]
+            if newInterval[1] >= i[0] and newInterval[1] <= i[1]:
+                newInterval[1] = i[1]
         if not added:
-            res.append([start,end])
+            res.append(newInterval)
         
         return res
