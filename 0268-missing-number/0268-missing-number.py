@@ -4,6 +4,12 @@ class Solution:
         #Solution 2: Bit Manipulation Solution
         #Time: O(n) Space: O(1)
         
+        res = 0
+        for n in nums:
+            res ^= n
+        for n in range(len(nums)+1):
+            res ^= n
+        return res
         
         """
         #Solution 1: Math Solution
@@ -14,7 +20,7 @@ class Solution:
         for i in nums: 
             total -= i
         return total
-        """
+        
         
         #Solution 0: Bag Solution
         #Time: O(n) Space: O(n)
@@ -23,4 +29,4 @@ class Solution:
         for n in nums:
             bag.remove(n)
         return bag.pop()
-        
+        """
