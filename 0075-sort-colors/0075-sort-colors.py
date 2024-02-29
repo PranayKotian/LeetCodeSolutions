@@ -5,7 +5,8 @@ class Solution:
         """
         
         #Solution 2: Real Bubble Sort
-        #Time: O(n^2) Space: O(n)
+        #Time: O(n^2)   Space: O(n)
+        #Time: 61%      Space: 35%
         
         n = len(nums)
         for i in range(n-1):
@@ -14,11 +15,13 @@ class Solution:
                 if nums[j] > nums[j+1]:
                     nums[j], nums[j+1] = nums[j+1], nums[j]
                     run = True
-            if not run: break
+            if not run:
+                break
         
         """
         #Solution 1: Inefficient Bubble Sort 
-        #Time: O(n^2) Space: O(n)
+        #Time: O(n^2)   Space: O(n)
+        #Time: 5%       Space: 62%
         
         run = True
         while run:
