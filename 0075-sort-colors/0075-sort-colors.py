@@ -4,6 +4,19 @@ class Solution:
         Do not return anything, modify nums in-place instead.
         """
         
+        #Solution 2: Real Bubble Sort
+        #Time: O(n^2) Space: O(n)
+        
+        n = len(nums)
+        for i in range(n-1):
+            run = False
+            for j in range(n-1-i):
+                if nums[j] > nums[j+1]:
+                    nums[j], nums[j+1] = nums[j+1], nums[j]
+                    run = True
+            if not run: break
+        
+        """
         #Solution 1: Inefficient Bubble Sort 
         #Time: O(n^2) Space: O(n)
         
@@ -14,3 +27,4 @@ class Solution:
                 if nums[i] > nums[i+1]:
                     nums[i], nums[i+1] = nums[i+1], nums[i]
                     run = True
+        """
