@@ -8,20 +8,22 @@ class Node:
 
 class Solution:
     def cloneGraph(self, node: 'Node') -> 'Node':
+        
+        #Solution 1: Original to Clone Dict w/ BFS
+        #Time: O(n) Space: O(n)
         if node is None:
             return None
         
-        copy = {node: Node(node.val)}
+        clone = {}
+        clone[node] = Node(node.val)
         stack = [node]
         
-        #Copy nodes and connections
         while stack:
-            for i in range(len(stack)):
-                n = stack.pop()
-                for nei in n.neighbors:
-                    if nei not in copy:
-                        copy[nei] = Node(nei.val)
-                        stack.append(nei)
-                    copy[n].neighbors.append(copy[nei])
+            cur = stack.pop()
+            for n in cur.neighbors:
+                if n not in clone:
+                    stack.append(n)
+                    clone[n] = Node(n.val)
+                clone[cur].neighbors.append(clone[n])
         
-        return copy[node]
+        return clone[node]
