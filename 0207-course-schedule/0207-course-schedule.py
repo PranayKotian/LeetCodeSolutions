@@ -2,14 +2,13 @@ class Solution:
     def canFinish(self, numCourses: int, prerequisites: List[List[int]]) -> bool:
         
         #Solution 1: Adjacency List Solution
-        #Time: O(n + p) Space: O(1)
+        #Time: O(n+p) Space: O(1)
         
         prereq = {i:[] for i in range(numCourses)}
         for p in prerequisites:
             prereq[p[0]] += [p[1]]
         
         visited = set()
-        
         def dfs(n):
             if prereq[n] == []:
                 return True
@@ -25,5 +24,7 @@ class Solution:
             return True
         
         for crs in range(numCourses):
-            if dfs(crs) == False: return False
+            if dfs(crs) == False:
+                return False
         return True
+        
