@@ -1,6 +1,16 @@
 class Solution:
     def buyChoco(self, prices: List[int], money: int) -> int:
         
+        #Sorting solution
+        #Time: O(nlogn) Space: O(1)
+        
+        prices.sort()
+        if prices[0] + prices[1] > money:
+            return money
+        else:
+            return money - prices[0] - prices[1]
+        
+        """
         #One pass solution
         #Time: O(n) Space: O(1)
         
@@ -15,14 +25,4 @@ class Solution:
             return money
         else:
             return money - sum(mins)
-        
-        """
-        #Sorting solution
-        #Time: O(nlogn) Space: O(1)
-        
-        prices.sort()
-        if prices[0] + prices[1] > money:
-            return money
-        else:
-            return money - prices[0] - prices[1]
         """
