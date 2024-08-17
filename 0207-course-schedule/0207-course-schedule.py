@@ -1,30 +1,33 @@
 class Solution:
     def canFinish(self, numCourses: int, prerequisites: List[List[int]]) -> bool:
         
-        #Solution 1: Adjacency List Solution
-        #Time: O(n+p) Space: O(1)
+        #Adjacency List + DFS Solution
+        #Time: O(n+p)  Space: O(n)
         
-        prereq = {i:[] for i in range(numCourses)}
-        for p in prerequisites:
-            prereq[p[0]] += [p[1]]
+        #Create adjacency list
+        prereqs = {}
+        for crs,prereq in prerequisites:
+            if crs not in prereqs:
+                prereqs[crs] = []
+            prereqs[crs].append(prereq)
+        
+        def dfs(course):
+            if course in visited:
+                return False
+            if course not in prereqs:
+                return True
+            
+            visited.add(course)
+            res = True
+            for req in prereqs[course].copy():
+                res = res and dfs(req)
+            visited.remove(course)
+            del prereqs[course]
+            return res
         
         visited = set()
-        def dfs(n):
-            if prereq[n] == []:
-                return True
-            if n in visited:
-                return False
-            
-            visited.add(n)
-            for p in prereq[n]:
-                if not dfs(p):
-                    return False
-            prereq[n] = []
-            visited.remove(n)
-            return True
-        
-        for crs in range(numCourses):
+        for crs in prereqs.copy():
             if dfs(crs) == False:
                 return False
-        return True
         
+        return True
