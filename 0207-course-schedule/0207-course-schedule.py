@@ -19,14 +19,14 @@ class Solution:
             
             visited.add(course)
             res = True
-            for req in prereqs[course].copy():
+            for req in prereqs[course]:
                 res = res and dfs(req)
             visited.remove(course)
-            del prereqs[course]
+            prereqs[course] = []
             return res
         
         visited = set()
-        for crs in prereqs.copy():
+        for crs in prereqs:
             if dfs(crs) == False:
                 return False
         
