@@ -1,6 +1,9 @@
 class Solution:
     def ladderLength(self, beginWord: str, endWord: str, wordList: List[str]) -> int:
         
+        #BFS w/ No Adjacency List Solution
+        #Time: O(n^2) Space: O(n)
+        
         if endWord not in wordList:
             return 0
         
@@ -15,6 +18,8 @@ class Solution:
             for a in range(len(q)):
                 w1 = q.popleft()
                 for w2 in wordList:
+                    if w2 in visited:
+                        continue
                     diff = 0
                     for i in range(wordLen):
                         if w1[i] != w2[i]:
@@ -27,5 +32,4 @@ class Solution:
                         if w2 not in visited:
                             q.append(w2)
                             visited.add(w2)
-        
         return 0
