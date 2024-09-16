@@ -5,7 +5,8 @@ class Solution:
             return 0
         
         n = len(wordList)
-        shortestpath = {word:n+1 for word in wordList}
+        wordLen = len(beginWord)
+        visited = set([beginWord])
                 
         q = deque([beginWord])
         words = 1
@@ -15,7 +16,7 @@ class Solution:
                 w1 = q.popleft()
                 for w2 in wordList:
                     diff = 0
-                    for i in range(len(beginWord)):
+                    for i in range(wordLen):
                         if w1[i] != w2[i]:
                             diff += 1
                         if diff > 1:
@@ -23,8 +24,8 @@ class Solution:
                     if diff == 1:
                         if w2 == endWord:
                             return words
-                        if shortestpath[w2] > words:
-                            shortestpath[w2] = words
+                        if w2 not in visited:
                             q.append(w2)
+                            visited.add(w2)
         
         return 0
