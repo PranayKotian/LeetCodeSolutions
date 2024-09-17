@@ -10,9 +10,8 @@ class Solution:
             idx -= 1
         
         if idx == -1:
-            digits = [1] + digits
-        else:
-            digits[idx] += 1
+            return [1] + digits
+        digits[idx] += 1
         return digits
         
         
