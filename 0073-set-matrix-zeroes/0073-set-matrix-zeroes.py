@@ -19,9 +19,7 @@ class Solution:
                     rows.add(r)
                     cols.add(c)
         
-        for r in rows:
+        for r in range(ROWS):
             for c in range(COLS):
-                matrix[r][c] = 0
-        for c in cols:
-            for r in range(ROWS):
-                matrix[r][c] = 0
+                if r in rows or c in cols:
+                    matrix[r][c] = 0
