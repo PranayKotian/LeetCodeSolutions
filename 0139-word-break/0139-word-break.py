@@ -1,27 +1,16 @@
 class Solution:
     def wordBreak(self, s: str, wordDict: List[str]) -> bool:
         
-        #DP Solution w/o Recursion
-        valid = [False]*(len(s)+1)
-        valid[0] = True
+        #DP Solution
+        #Time: O(s*w) Space: O(s)
         
-        for i in range(len(s)):
-            for w in wordDict:
-                if w == s[i:i+len(w)] and valid[i]:
-                    valid[i+len(w)] = True
-        return valid[-1]
+        arr = [0 for i in range(len(s)+1)]
+        arr[0] = 1
         
-        """
-        #Recursive DP solution w/ cheater memoization
-        @lru_cache(None)
-        def dfs(w):
-            if w in wordDict:
-                return True
-            for word in wordDict:
-                if w[:len(word)] == word:
-                    if dfs(w[len(word):]):
-                        return True
-            return False
+        for i in range(len(arr)):
+            if arr[i]:
+                for word in wordDict:
+                    if s[i:i+len(word)] == word:
+                        arr[i+len(word)] = 1
         
-        return dfs(s)
-        """
+        return arr[-1] == 1
