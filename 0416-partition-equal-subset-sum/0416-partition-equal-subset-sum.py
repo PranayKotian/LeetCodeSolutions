@@ -1,48 +1,37 @@
 class Solution:
     def canPartition(self, nums: List[int]) -> bool:
         
-        #Solution 3: Dynamic Programming
-        #Time: O(n*sum(nums)) Space: O(sum(nums))
-        if sum(nums)%2 == 1:
+        #DP Solution
+        #Time: O(n) Space: O(n^2)
+        
+        tot = sum(nums)
+        if tot%2 == 1:
             return False
         
-        target = sum(nums)//2
-        sums = set([0])
-        
+        cache = set([0])
         for n in nums:
-            for s in sums.copy():
-                sums.add(s+n)
-            if target in sums:
+            for i in cache.copy():
+                cache.add(i+n)
+            
+            if tot//2 in cache:
                 return True
-        
         return False
         
-        #Solution 2: Backtrack w/ Cache
-        #Time: O(n*sum(nums)) Space:
-        #where sum(nums) is (max) 200*100 = 20000
-        
-        
         """
-        #Solution 1: Brute force DFS
-        #Time: O(2^n) Space: O(n)
-        #(Time Limited Exceeded w/ 36/141 passed) 
+        #Brute Force Solution
+        #Time: O(2^n))
         
-        if sum(nums)%2 == 1:
+        tot = sum(nums)
+        if tot%2 == 1:
             return False
         
-        def dfs(cur, arr):
-            if sum(arr) == cur:
-                return True
-            if cur > sum(arr):
+        def dfs(cur, i):
+            if i == len(nums) or cur > tot//2:
                 return False
+            if cur == tot//2:
+                return True
             
-            for i in range(len(arr)):
-                elm = arr.pop(0)
-                if dfs(cur+elm, arr):
-                    return True
-                arr.append(elm)
-            
-            return False
+            return dfs(cur+nums[i], i+1) or dfs(cur, i+1)
         
-        return dfs(0, nums)
+        return dfs(0, 0)
         """
