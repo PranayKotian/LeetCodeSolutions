@@ -1,16 +1,20 @@
 class Solution:
     def findDuplicate(self, nums: List[int]) -> int:
         
-        sp = nums[0]
-        fp = nums[nums[0]]
+        #Floyd's Algorithm
+        #Time: O(n) Space: O(1)
         
-        while fp != sp:
-            sp = nums[sp]
-            fp = nums[nums[fp]]
+        start = 0
+        fast = nums[nums[0]]
+        slow = nums[0]
         
-        hp = 0
-        while fp != hp:
-            hp = nums[hp]
-            fp = nums[fp]
+        while fast != slow:
+            fast = nums[nums[fast]]
+            slow = nums[slow]
         
-        return hp
+        while start != fast:
+            start = nums[start]
+            fast = nums[fast]
+        
+        return start
+        
