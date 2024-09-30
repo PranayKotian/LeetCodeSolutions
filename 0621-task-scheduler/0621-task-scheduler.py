@@ -15,7 +15,4 @@ class Solution:
             else:
                 break
         
-        if n >= len(c)-1:
-            return (n+1)*(a-1) + b
-        else:
-            return max(len(tasks), (n+1)*(a-1) + b)
+        return max(len(tasks), (n+1)*(a-1) + b)
