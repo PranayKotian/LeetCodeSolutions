@@ -14,7 +14,7 @@ class Solution:
             bricks -= height
             heapq.heappush(maxHeap, -height)
             
-            while bricks < 0:
+            if bricks < 0:
                 if ladders == 0:
                     return i-1
                 bricks += -1*heapq.heappop(maxHeap)
