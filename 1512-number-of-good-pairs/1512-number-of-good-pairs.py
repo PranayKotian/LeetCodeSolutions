@@ -6,8 +6,8 @@ class Solution:
         
         res = 0
         c = Counter(nums)
-        for n in c:
-            if c[n] > 1:
-                for i in range(1,c[n]):
-                    res += i
+        for i in c:
+            if c[i] > 1:
+                n = c[i]-1
+                res += int((n/2)*(n+1))
         return res
