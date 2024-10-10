@@ -7,6 +7,7 @@
 class Solution:
     def getIntersectionNode(self, headA: ListNode, headB: ListNode) -> Optional[ListNode]:
         
+        """
         #Elegant Constant Memory Solution
         #Time: O(a+b) Space: O(1)
         l1, l2 = headA, headB
@@ -14,8 +15,8 @@ class Solution:
             l1 = l1.next if l1 else headB
             l2 = l2.next if l2 else headA
         return l1 #will either return intersection point or both lists will have gone to null
-        
         """
+        
         #Constant Memory Solution
         #Time: O(a+b) Space: O(1)
         
@@ -42,7 +43,6 @@ class Solution:
             a = a.next
             b = b.next
         return a 
-        """
         
         """
         #Set Solution
