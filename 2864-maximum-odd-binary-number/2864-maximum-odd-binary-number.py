@@ -9,10 +9,5 @@ class Solution:
             if c == "1":
                 numOnes += 1
                 
-        res = ""
-        for i in range(numOnes):
-            res += "1"
-        for i in range(len(s)-numOnes-1):
-            res += "0"
-        res += "1"
+        res = "1" * (numOnes) + "0" * (len(s)-numOnes-1) + "1"
         return res
