@@ -1,12 +1,14 @@
 class Solution:
     def twoSum(self, nums: List[int], target: int) -> List[int]:
         
-        #Solution 1: Cache Solution
+        #Hashmap solution
         #Time: O(n) Space: O(n)
         
-        cache = {}
-        
+        table = {}
+        for idx,val in enumerate(nums):
+            table[val] = idx
         for idx,n in enumerate(nums):
-            if target-n in cache:
-                return [idx, cache[target-n]]
-            cache[n] = idx
+            tar = target-n
+            if tar in table and idx != table[tar]:
+                return [idx, table[tar]]
+            
