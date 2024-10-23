@@ -2,7 +2,7 @@ class Solution:
     def findPairs(self, nums: List[int], k: int) -> int:
         
         #Sorting + Two Pointer
-        #Time: O(n) Space: O(1)
+        #Time: O(n) Space: O(n)
         
         res = 0
         if k == 0:
