@@ -2,15 +2,10 @@ class Solution:
     def canReorderDoubled(self, arr: List[int]) -> bool:
         
         #Dictionary Solution
-        #Time: O(n) Space: O(n)
+        #Time: O(nlogn) Space: O(n)
         
-        table = defaultdict(int)
-        for n in arr:
-            table[n] += 1
+        table = Counter(arr)
         arr.sort()
-        
-        if table[0]%2 == 1:
-            return False
         
         for n in arr:
             if table[n] == 0:
