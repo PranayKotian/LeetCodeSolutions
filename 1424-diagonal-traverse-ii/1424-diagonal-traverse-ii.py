@@ -12,12 +12,10 @@ class Solution:
         
         c = 0
         res = []
-        tot = sum(len(i) for i in nums)
-        while len(res) < tot:
+        while c in table:
             res += table[c]
             c += 1
         return res
-        
         
         """
         #Below solutions traverse empty cells making runtime very inefficient
