@@ -1,24 +1,24 @@
 class Solution:
     def occurrencesOfElement(self, nums: List[int], queries: List[int], x: int) -> List[int]:
         
+        #Track All Occurences Solution w/ Arrays
+        #Time: O(n+q) Space: O(n)
         
-        """
-        qtable = defaultdict(list)
-        for i,v in enumerate(queries):
-            qtable[v].append(i)
-        
-        queries = sorted(list(set(queries)))
-        occurences = 0
-        q = 0
-        qth = queries[q]
-        
-        for n in nums:
+        occur = [0]
+        for i,n in enumerate(nums):
             if n == x:
-                occurences += 1
-            if occurences == qth:
+                occur.append(i)
+        res = []
+        oLen = len(occur)
+        for q in queries:
+            if q < oLen: res.append(occur[q])
+            else: res.append(-1)
+        return res
+        
         """
-                
-                
+        #Track All Occurences Solution w/ Dict
+        #Time: O(n+q) Space: O(n)
+        
         table = defaultdict(lambda:-1)
         count = 0
         for i,n in enumerate(nums):
@@ -27,4 +27,4 @@ class Solution:
                 table[count] = i
         res = [table[q] for q in queries]
         return res
-        
+        """
