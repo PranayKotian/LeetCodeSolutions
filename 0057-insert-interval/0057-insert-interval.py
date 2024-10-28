@@ -1,26 +1,24 @@
 class Solution:
     def insert(self, intervals: List[List[int]], newInterval: List[int]) -> List[List[int]]:
         
-        #Compact Solution
+        #Compacter Solution
         #Time: O(n) Space: O(n)
         
         sn,en = newInterval
         res = []
-        inserted = False
         
-        for s,e in intervals:
+        for i in range(len(intervals)):
+            s = intervals[i][0]
+            e = intervals[i][1]
+            
             if e < sn:
                 res.append([s,e])
-            elif s<=sn<=e or s<=en<=e or sn<=s<=en or sn<=e<=en:
+            elif s > en: 
+                res.append([sn,en])
+                return res + intervals[i:]
+            else:
                 sn = min(sn,s)
                 en = max(en,e)
-            if s > en: 
-                if not inserted:
-                    res.append([sn,en])
-                    inserted = True
-                res.append([s,e])
         
-        if not inserted:
-            res.append([sn,en])
-        
+        res.append([sn,en])
         return res
