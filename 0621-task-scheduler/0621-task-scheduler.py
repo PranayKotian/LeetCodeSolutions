@@ -1,6 +1,15 @@
 class Solution:
     def leastInterval(self, tasks: List[str], n: int) -> int:
         
+        #Counter + Math Solution
+        #Time: O(n) Space: O(n)
+        
+        c = Counter(tasks).values()
+        a = max(c)
+        b = list(c).count(a)
+        return max(len(tasks), (n+1)*(a-1) + b)
+        
+        """
         #Max Heap Solution
         #Time O(n + m) where m = idle time, Space: O(n)
         
@@ -15,13 +24,4 @@ class Solution:
                     heapq.heappush(minHeap, cur)
             t += 1
         return t
-        
-        """
-        #Counter + Math Solution
-        #Time: O(n) Space: O(n)
-        
-        c = Counter(tasks).values()
-        a = max(c)
-        b = list(c).count(a)
-        return max(len(tasks), (n+1)*(a-1) + b)
         """
