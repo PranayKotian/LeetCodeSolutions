@@ -5,7 +5,6 @@ class Solution:
         #Time: O(nlogn) Space: O(n)
         
         points.sort()
-        print(points)
         res = 1
         a,b = points[0]
         for i in range(1,len(points)):
