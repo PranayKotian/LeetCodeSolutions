@@ -1,6 +1,24 @@
 class Solution:
     def removeCoveredIntervals(self, intervals: List[List[int]]) -> int:
         
+        #Sorting Solution
+        #Time: O(nlogn) Space: O(n)
+        
+        intervals.sort(key=lambda i:(i[0],-i[1]))
+        
+        res = 1
+        c,d = intervals[0]
+        for i in range(1,len(intervals)):
+            a,b = intervals[i]
+            
+            if c <= a and b <= d:
+                continue
+            else:
+                res += 1
+                c,d = a,b
+        return res
+        
+        """
         #Brute Force
         #Time: O(n^2) Space: O(1)
         
@@ -22,3 +40,4 @@ class Solution:
             if not covered:
                 res += 1
         return res
+        """
