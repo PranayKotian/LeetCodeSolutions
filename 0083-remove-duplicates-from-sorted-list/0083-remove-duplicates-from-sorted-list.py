@@ -6,15 +6,15 @@
 class Solution:
     def deleteDuplicates(self, head: Optional[ListNode]) -> Optional[ListNode]:
         
-        #Solution 1: Standard Node Removal
-        #Time: O(n) Space: O(1)
+        #Node Removal Solution
+        #Time: O(n) Space: N/A
         
-        dummy = ListNode(-101, head)
-        prev = dummy
+        temp = ListNode(-101, head)
+        prev = temp
         while head:
             if head.val == prev.val:
                 prev.next = head.next
             else:
                 prev = head
             head = head.next
-        return dummy.next
+        return temp.next
