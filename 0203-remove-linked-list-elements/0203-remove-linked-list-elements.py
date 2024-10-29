@@ -6,15 +6,16 @@
 class Solution:
     def removeElements(self, head: Optional[ListNode], val: int) -> Optional[ListNode]:
         
-        #Solution 2: Standard Linked List Node Removal (w/ Dummy Node)
-        #Time: O(n) Space: N/A
+        #One Pass Solution
+        #Time: O(n) Space: O(1)
         
-        temp = ListNode(0, head)
-        prev = temp
+        prev = ListNode(0, head)
+        res = prev
         while head:
             if head.val == val:
                 prev.next = head.next
+                head = head.next
             else:
-                prev = head
-            head = head.next
-        return temp.next
+                head, prev = head.next, head
+        return res.next
+        
