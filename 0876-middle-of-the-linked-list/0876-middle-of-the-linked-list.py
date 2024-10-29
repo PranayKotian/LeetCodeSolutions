@@ -9,8 +9,8 @@ class Solution:
         #Fast and Slow Pointer Solution
         #Time: O(n) Space: O(1)
         
-        slow = fast = head
+        fast = slow = head
         while fast and fast.next:
-            slow = slow.next
             fast = fast.next.next
+            slow = slow.next
         return slow
