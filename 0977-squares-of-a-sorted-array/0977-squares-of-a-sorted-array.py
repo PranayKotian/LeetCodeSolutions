@@ -1,11 +1,28 @@
 class Solution:
     def sortedSquares(self, nums: List[int]) -> List[int]:
         
+        #Two Pointer Solution
+        #Time: O(n) Space: O(1)
+        
+        l = 0
+        r = len(nums)-1
+        res = []
+        
+        while l <= r:
+            if nums[l]**2 > nums[r]**2:
+                res.append(nums[l]**2)
+                l += 1
+            else:
+                res.append(nums[r]**2)
+                r -= 1
+        return res[::-1]
+        
+        """
         #Trivial Solution
         #Time: O(nlogn) Space: O(n)
         return sorted([n**2 for n in nums])
         
-        """
+        
         #Binary Search Solution
         #Time: O(logn + n) Space: O(1)
         
