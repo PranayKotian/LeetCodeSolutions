@@ -6,16 +6,32 @@
 class Solution:
     def isPalindrome(self, head: Optional[ListNode]) -> bool:
         
-        #Solution 1: Two pass solution
-        #Time: O(n) Space: N/A
+        #Constant Space Solution
+        #Time: O(n) Space: O(1)
+        #Fast & slow pointer + reverse first half of linked list
         
+        nodes = 0
+        cur = head
+        while cur:
+            nodes += 1
+            cur = cur.next
         
-        #Solution 2: One pass solution
+        prev = None
+        fast = slow = head
+        while fast and fast.next:
+            fast = fast.next.next
+            slow.next, prev, slow = prev,slow,slow.next
+        
+        if nodes%2 == 1:
+            slow = slow.next
+        while prev and slow:
+            if slow.val != prev.val:
+                return False
+            prev = prev.next
+            slow = slow.next
+        
+        return True
+        
+        #Extra Space Solution
         #Time: O(n) Space: O(n)
-        
-        arr = []
-        while head:
-            arr.append(head.val)
-            head = head.next
-        
-        return arr == arr[::-1]
+        #Store linked list in array, check if array is palindrome (arr == arr[::-1])
