@@ -1,27 +1,37 @@
 class Solution:
     def sortedSquares(self, nums: List[int]) -> List[int]:
         
-        #Solution 2: Binary Search Solution
-        #Time: O(n) Space: O(n)
+        #Binary Search Solution
+        #Time: O(logn + n) Space: O(1)
         
-        res = []
-        l = 0
+        if nums[0] >= 0 or len(nums)==1:
+            return [n**2 for n in nums]
+        
+        l = 1
         r = len(nums)-1
         while l <= r:
-            if abs(nums[l]) > abs(nums[r]):
-                res.append(nums[l]**2)
-                l+=1
+            m = (l+r)//2
+            if nums[m] >= 0 and nums[m-1] >= 0:
+                r = m-1
+            elif nums[m] < 0 and nums[m-1] < 0: 
+                l = m+1
             else:
-                res.append(nums[r]**2)
-                r-=1
+                break
         
-        return res[::-1]
-        
-        """
-        #Solution 1: .sort() solution
-        #Time: O(nlogn) Space: O(n)
-        
-        nums = [i**2 for i in nums]
-        nums.sort()
-        return nums
-        """
+        nums = [n**2 for n in nums]
+        res = []
+        l = m-1
+        r = m
+        while True:
+            if l == -1:
+                nums = nums[r:]
+                return res + nums
+            elif r == len(nums):
+                nums = nums[:l+1][::-1]
+                return res + nums
+            elif nums[l] < nums[r]:
+                res.append(nums[l])
+                l -= 1
+            else: 
+                res.append(nums[r])
+                r += 1
