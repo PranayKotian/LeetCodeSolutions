@@ -1,6 +1,11 @@
 class Solution:
     def sortedSquares(self, nums: List[int]) -> List[int]:
         
+        #Trivial Solution
+        #Time: O(nlogn) Space: O(n)
+        return sorted([n**2 for n in nums])
+        
+        """
         #Binary Search Solution
         #Time: O(logn + n) Space: O(1)
         
@@ -35,3 +40,4 @@ class Solution:
             else: 
                 res.append(nums[r])
                 r += 1
+        """
