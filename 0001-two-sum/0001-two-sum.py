@@ -1,14 +1,11 @@
 class Solution:
     def twoSum(self, nums: List[int], target: int) -> List[int]:
         
-        #Hashmap solution
+        #Dictionary Solution
         #Time: O(n) Space: O(n)
         
-        table = {}
-        for idx,val in enumerate(nums):
-            table[val] = idx
-        for idx,n in enumerate(nums):
-            tar = target-n
-            if tar in table and idx != table[tar]:
-                return [idx, table[tar]]
-            
+        table = {v:i for i,v in enumerate(nums)}
+        for i,v in enumerate(nums):
+            if target-v in table and table[target-v] != i:
+                return [i,table[target-v]]
+        return -1 #error
