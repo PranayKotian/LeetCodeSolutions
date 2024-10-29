@@ -1,13 +1,12 @@
 class Solution:
     def maxProfit(self, prices: List[int]) -> int:
         
-        #One pass solution (track current minimum)
-        #Time: O(n) Space: O(2)
-        maxProfit = 0
-        curmin = prices[0]
+        #One Pass Solution
+        #Time: O(n) Space: O(1)
         
+        res = 0
+        curMin = prices[0]
         for p in prices[1:]:
-            maxProfit = max(maxProfit, p-curmin)
-            curmin = min(curmin, p)
-        
-        return maxProfit
+            res = max(res, p-curMin)
+            curMin = min(curMin, p)
+        return res
