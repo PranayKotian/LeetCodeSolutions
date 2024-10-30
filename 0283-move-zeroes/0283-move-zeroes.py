@@ -3,32 +3,18 @@ class Solution:
         """
         Do not return anything, modify nums in-place instead.
         """
-        #Solution 2: Two Pointer Solution (w/ Swapping)
-        #Time: O(n) Space: N/A
         
-        l = 0
-        for r in range(len(nums)): 
-            if nums[r] != 0:
-                nums[l], nums[r] = nums[r], nums[l]
-                l += 1
+        #Track Zeros Approach
+        #Time: O(2n) Space: N/A
         
-        """
-        #Solution 1: Two Pointer Solution
-        #Time: O(n) Space: N/A 
-        
-        i = 0
-        for r in range(len(nums)):
-            if nums[r] == 0:
-                continue
-            elif r == i: #and nums[r] != 0
-                i += 1
-                continue
-            nums[i] = nums[r]
-            i += 1
-        while i < len(nums):
+        offset = 0
+        for i in range(len(nums)):
+            if nums[i] == 0:
+                offset += 1
+            else:
+                nums[i-offset] = nums[i]
+        for i in range(len(nums)-offset,len(nums)):
             nums[i] = 0
-            i += 1
-            
-        #Solution 0: Extra Memory Solution
-        #Time: O(n) Space: O(n)
-        """
+        
+        #Bubble Sort Approach
+        #Time: O(n^2) Space: N/A
