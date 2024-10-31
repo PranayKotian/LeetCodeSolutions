@@ -7,7 +7,12 @@ class Solution:
         #Bubble Sort
         #Time: O(n^2) Space: N/A
         
+        run = False
         for j in range(1,len(nums)):
             for i in range(len(nums)-j):
                 if nums[i+1] < nums[i]:
                     nums[i], nums[i+1] = nums[i+1], nums[i]
+                    run = True
+            if not run:
+                break
+            run = False
