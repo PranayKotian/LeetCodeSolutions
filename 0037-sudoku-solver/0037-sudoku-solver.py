@@ -6,17 +6,17 @@ class Solution:
         
         def valid(i,j,val):
             for r in range(9): #checks column
-                if board[r][j] != "." and int(board[r][j]) == val:
+                if board[r][j] == val:
                     return False
             for c in range(9): #checks row
-                if board[i][c] != "." and int(board[i][c]) == val:
+                if board[i][c] == val:
                     return False
             
             sqrRow = (i//3)*3
             sqrCol = (j//3)*3
             for r in range(sqrRow,sqrRow+3):
                 for c in range(sqrCol, sqrCol+3):
-                    if board[r][c] != "." and int(board[r][c]) == val:
+                    if board[r][c] == val:
                         return False
             return True
         
@@ -24,13 +24,13 @@ class Solution:
             for r in range(9):
                 for c in range(9):
                     if grid[r][c] == ".":
-                        for n in range(1,10):
+                        for n in ["1","2","3","4","5","6","7","8","9"]:
                             if valid(r,c,n):
-                                grid[r][c] = str(n)
+                                grid[r][c] = n
                                 if solve(grid):
-                                    return grid
+                                    return True
                                 grid[r][c] = "."
-                        return 
-            return grid
+                        return False
+            return True
         
-        return solve(board)
+        solve(board)
