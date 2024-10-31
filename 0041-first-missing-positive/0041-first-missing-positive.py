@@ -11,7 +11,8 @@ class Solution:
         for i in range(len(nums)):
             if abs(nums[i]) > len(nums):
                 continue
-            nums[abs(nums[i])-1] = abs(nums[abs(nums[i])-1]) * -1
+            if nums[abs(nums[i])-1] > 0:
+                nums[abs(nums[i])-1] *= -1
         for i,n in enumerate(nums):
             if n > 0:
                 return i+1
