@@ -12,8 +12,8 @@ class Solution:
             l = i+1
             r = len(nums)-1
             while l < r:
-                if abs(target-(nums[i]+nums[l]+nums[r])) < dist:
-                    dist = abs(target-(nums[i]+nums[l]+nums[r]))
+                if abs(tar-(nums[l]+nums[r])) < dist:
+                    dist = abs(tar-(nums[l]+nums[r]))
                     res = nums[i]+nums[l]+nums[r]
                 if nums[l]+nums[r] < tar:
                     l += 1
