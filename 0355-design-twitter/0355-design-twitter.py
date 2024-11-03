@@ -10,9 +10,9 @@ class Twitter:
         self.timer -= 1
 
     def getNewsFeed(self, userId: int) -> List[int]:
-        minHeap = self.tweets[userId].copy()
+        minHeap = self.tweets[userId][max(0,len(self.tweets[userId])-10):]
         for user in self.following[userId]:
-            minHeap += self.tweets[user].copy()
+            minHeap += self.tweets[user][max(0,len(self.tweets[userId])-10):]
         heapify(minHeap)
         res = []
         for i in range(10):
