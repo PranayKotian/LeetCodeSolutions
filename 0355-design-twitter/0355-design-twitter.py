@@ -10,15 +10,21 @@ class Twitter:
         self.timer -= 1
 
     def getNewsFeed(self, userId: int) -> List[int]:
-        minHeap = self.tweets[userId][max(0,len(self.tweets[userId])-10):]
+        minHeap = []
+        self.following[userId].add(userId)
         for user in self.following[userId]:
-            minHeap += self.tweets[user][max(0,len(self.tweets[userId])-10):]
-        heapify(minHeap)
+            if self.tweets[user]:
+                index = len(self.tweets[user])-1
+                time, tweetId = self.tweets[user][index]
+                heappush(minHeap, [time, tweetId, user, index])
+        
         res = []
-        for i in range(10):
-            if not minHeap:
-                break
-            res.append(heappop(minHeap)[1])
+        while minHeap and len(res) < 10:
+            time, tweetId, user, index = heappop(minHeap)
+            res.append(tweetId)
+            if index > 0:
+                time, tweetId = self.tweets[user][index-1]
+                heappush(minHeap, [time, tweetId, user, index-1])
         return res
 
     def follow(self, followerId: int, followeeId: int) -> None:
@@ -26,6 +32,8 @@ class Twitter:
 
     def unfollow(self, followerId: int, followeeId: int) -> None:
         self.following[followerId].discard(followeeId)
+        if self.following[followerId] == set():
+            del self.following[followerId]
 
 
 # Your Twitter object will be instantiated and called as such:
