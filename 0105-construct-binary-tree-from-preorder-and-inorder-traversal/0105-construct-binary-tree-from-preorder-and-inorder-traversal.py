@@ -7,15 +7,16 @@
 class Solution:
     def buildTree(self, preorder: List[int], inorder: List[int]) -> Optional[TreeNode]:
         
-        #Recursive solution
-        #Preoder: M L R
-        #Inorder: L M R
+        #Recursive Solution
+        #Time: O(n^2) Space: O(n)
         
-        if not preorder or not inorder:
+        #preorder: root {root left right} {root left right}
+        #inorder:  {left root right} root {left root right} 
+        
+        if preorder == []: #or inorder == []
             return None
-        rootVal = preorder[0]
-        m = inorder.index(rootVal)
-        root = TreeNode(rootVal)
-        root.left = self.buildTree(preorder[1:1+m], inorder[:m])
-        root.right = self.buildTree(preorder[1+m:], inorder[m+1:])
-        return root
+        res = TreeNode(preorder[0])
+        idx = inorder.index(preorder[0]) #number of values in left subtree
+        res.left = self.buildTree(preorder[1:1+idx], inorder[:idx])
+        res.right = self.buildTree(preorder[1+idx:], inorder[idx+1:])
+        return res
