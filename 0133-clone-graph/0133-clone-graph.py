@@ -6,24 +6,20 @@ class Node:
         self.neighbors = neighbors if neighbors is not None else []
 """
 
+from typing import Optional
 class Solution:
-    def cloneGraph(self, node: 'Node') -> 'Node':
+    def cloneGraph(self, node: Optional['Node']) -> Optional['Node']:
         
-        #Solution 1: Original to Clone Dict w/ BFS
+        #DFS Solution
         #Time: O(n) Space: O(n)
-        if node is None:
-            return None
         
-        clone = {}
-        clone[node] = Node(node.val)
-        stack = [node]
-        
-        while stack:
-            cur = stack.pop()
-            for n in cur.neighbors:
-                if n not in clone:
-                    stack.append(n)
-                    clone[n] = Node(n.val)
-                clone[cur].neighbors.append(clone[n])
-        
-        return clone[node]
+        cache = {None: None}
+        def dfs(cur):
+            if cur not in cache:
+                cache[cur] = Node(cur.val)
+                for nei in cur.neighbors:
+                    if nei not in cache:
+                        dfs(nei)
+                    cache[cur].neighbors.append(cache[nei])
+        dfs(node)
+        return cache[node]
