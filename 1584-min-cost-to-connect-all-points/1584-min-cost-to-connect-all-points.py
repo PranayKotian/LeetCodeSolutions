@@ -17,19 +17,18 @@ class Solution:
             
         #Inefficient Prim's algorithm
         minHeap = [[0,0]]
-        visited = set()
         unvisited = set([i for i in range(len(points))])
         res = 0
         
-        while len(visited) < len(points):
+        while True: #len(unvisited) != 0
             d,p = heappop(minHeap)
             res += d
             
-            visited.add(p)
             unvisited.remove(p)
+            if len(unvisited) == 0:
+                return res
+            
             for point in unvisited:
                 heappush(minHeap, [dist[(p,point)], point])
-            while minHeap and minHeap[0][1] in visited:
+            while minHeap and minHeap[0][1] not in unvisited:
                 heappop(minHeap)
-        
-        return res
