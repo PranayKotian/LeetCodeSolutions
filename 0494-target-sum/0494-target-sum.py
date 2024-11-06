@@ -4,18 +4,18 @@ class Solution:
         #Brute Force w/ Memoization
         #Time: O(n*sum(nums)) Space: O(n*sum(nums))
         
-        # cache = {}
-        @cache
+        cache = {}
+        # @cache
         def dfs(i,tot):
             if i == len(nums):
                 if tot == target:
                     return 1
                 return 0
-            return dfs(i+1, tot+nums[i]) + dfs(i+1, tot-nums[i])
+            # return dfs(i+1, tot+nums[i]) + dfs(i+1, tot-nums[i])
             
-            # if (i+1,tot+nums[i]) not in cache: cache[(i+1,tot+nums[i])] = dfs(i+1, tot+nums[i])
-            # if (i+1,tot-nums[i]) not in cache: cache[(i+1,tot-nums[i])] = dfs(i+1, tot-nums[i])
-            # return cache[(i+1,tot+nums[i])] + cache[(i+1,tot-nums[i])]
+            if (i, tot) not in cache:
+                cache[(i, tot)] = dfs(i+1, tot+nums[i]) + dfs(i+1, tot-nums[i])
+            return cache[(i, tot)]
         
         return dfs(0,0)
         
