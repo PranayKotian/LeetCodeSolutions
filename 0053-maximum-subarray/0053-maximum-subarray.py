@@ -1,17 +1,16 @@
 class Solution:
     def maxSubArray(self, nums: List[int]) -> int:
         
-        #Greedy Solution
-        #Time: O(n) Space: O(1) 
+        #One Pass Solution
+        #Time: O(n) Space: O(1)
         
-        cur = 0
-        res = nums[0]
-        for n in nums:
-            cur += n
-            if cur > res:
-                res = cur
-            if cur < 0:
-                cur = 0
+        res = ~sys.maxsize
+        tot = 0
+        for i in range(len(nums)):
+            tot += nums[i]
+            res = max(res,tot)
+            if tot < 0:
+                tot = 0
         return res
         
         #Brute Force Solution
