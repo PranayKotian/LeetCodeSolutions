@@ -5,12 +5,17 @@ class Solution:
         #Time: O(n) Space: O(n)
         
         numsSet = set(nums)
-        res = 0
+        starts = set()
+        
         for n in nums:
             if n-1 not in numsSet:
-                count = 0
-                while n in numsSet:
-                    count += 1
-                    n += 1
-                res = max(res,count)
+                starts.add(n)
+        
+        res = 0
+        for n in starts:
+            c = 0
+            while n in numsSet:
+                c += 1
+                n += 1
+            res = max(res,c)
         return res
