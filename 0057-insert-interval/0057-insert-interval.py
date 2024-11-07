@@ -10,10 +10,10 @@ class Solution:
             s1,e1 = intervals[i]
             if e1 < s2:
                 res.append([s1,e1])
-                continue
-            if s1 > e2:
+            elif s1 > e2:
                 return res + [[s2,e2]] + intervals[i:]    
-            s2,e2 = min(s1,s2),max(e1,e2)
+            else:
+                s2,e2 = min(s1,s2),max(e1,e2)
         return res + [[s2,e2]]
             
             
