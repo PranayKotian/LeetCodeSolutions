@@ -1,12 +1,14 @@
 class Solution:
     def uniquePaths(self, m: int, n: int) -> int:
-        #2D DP Solution
+        
+        #Dynamic Programming Solution
         #Time: O(n*m) Space: O(n*m)
         
-        arr = [[1 for i in range(m)] for j in range(n)]
+        #m rows
+        #n columns
         
-        for i in range(1,m):
-            for j in range(1,n):
-                arr[j][i] = arr[j-1][i] + arr[j][i-1]
-        
-        return arr[-1][-1]
+        paths = [[1 for i in range(n)] for i in range(m)]
+        for r in range(1,m):
+            for c in range(1,n):
+                paths[r][c] = paths[r-1][c] + paths[r][c-1]
+        return paths[-1][-1]
