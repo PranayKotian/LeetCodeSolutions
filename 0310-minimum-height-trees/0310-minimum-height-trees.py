@@ -18,7 +18,7 @@ class Solution:
                 if len(edgesDict[n1]) == 1:
                     remove.append(n1)
             for n1 in remove:
-                edgesDict[next(iter((edgesDict[n1])))].remove(n1)
+                edgesDict[list(edgesDict[n1])[0]].remove(n1)
                 del edgesDict[n1]
         return list(edgesDict.keys())
         
