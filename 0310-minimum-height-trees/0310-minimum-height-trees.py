@@ -2,23 +2,25 @@ class Solution:
     def findMinHeightTrees(self, n: int, edges: List[List[int]]) -> List[int]:
         
         #Eliminate Leaf Nodes Solution
-        #Time: O() Space: O(n+e) 
+        #Time: O(n) Space: O(n+e) 
+        
+        if edges == []: 
+            return [0]
         
         edgesDict = defaultdict(set)
         for n1,n2 in edges:
             edgesDict[n1].add(n2)
             edgesDict[n2].add(n1)
         
-        nodes = set([i for i in range(n)])
-        while len(nodes) > 2:
+        while len(edgesDict) > 2:
             remove = []
-            for n1 in nodes:
+            for n1 in edgesDict:
                 if len(edgesDict[n1]) == 1:
                     remove.append(n1)
             for n1 in remove:
-                nodes.remove(n1)
                 edgesDict[next(iter((edgesDict[n1])))].remove(n1)
-        return list(nodes)
+                del edgesDict[n1]
+        return list(edgesDict.keys())
         
         '''        
         edgesDict
