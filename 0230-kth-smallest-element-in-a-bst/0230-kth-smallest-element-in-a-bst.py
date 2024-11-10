@@ -7,6 +7,24 @@
 class Solution:
     def kthSmallest(self, root: Optional[TreeNode], k: int) -> int:
         
+        #Iterative DFS Inorder Traversal Solution
+        #Time: O(n) Space: O(n)
+        
+        cur = root
+        stack = []
+
+        while cur or stack:
+            while cur:
+                stack.append(cur)
+                cur = cur.left
+            cur = stack.pop()
+            k -= 1
+            if k == 0:
+                return cur.val
+            cur = cur.right
+        return -1 #error
+        
+        """
         #Inorder Traversal Solution
         #Time: O(n) Space: O(n)
         
@@ -16,3 +34,4 @@ class Solution:
             return dfs(node.left) + [node.val] + dfs(node.right)
         res = dfs(root)
         return res[k-1]
+        """
