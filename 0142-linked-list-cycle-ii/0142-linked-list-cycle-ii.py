@@ -7,6 +7,27 @@
 class Solution:
     def detectCycle(self, head: Optional[ListNode]) -> Optional[ListNode]:
         
+        #Floyd's Algorithm Constant Memory Solution
+        #Time: O(n) Space: O(1)
+        
+        if head is None:
+            return None
+        
+        start = ListNode(0, head)
+        slow = head
+        fast = head.next
+        
+        while slow != fast:
+            if fast is None or fast.next is None:
+                return None
+            slow = slow.next
+            fast = fast.next.next
+        while start != fast:
+            start = start.next
+            fast = fast.next
+        return start
+        
+        """
         #Set Solution
         #Time: O(n) Space: O(n)
         
@@ -17,3 +38,4 @@ class Solution:
             bag.add(head)
             head = head.next
         return None
+        """
