@@ -7,37 +7,12 @@
 class Solution:
     def kthSmallest(self, root: Optional[TreeNode], k: int) -> int:
         
-        #Iterative DFS Solution
-        #Time: O(n) Space: O(k)
-        
-        cur = root
-        stack = []
-        res = []
-
-        while cur or stack:
-            while cur:
-                stack.append(cur)
-                cur = cur.left
-            cur = stack.pop()
-            k -= 1
-            res.append(cur.val)
-            if k == 0:
-                return (res[-1])
-            cur = cur.right
-        return -1 #error
-        
-        """
-        #Recursive DFS Solution (add smallest values first)
-        #Return when len(arr) == k
+        #Inorder Traversal Solution
         #Time: O(n) Space: O(n)
         
-        res = []
         def dfs(node):
             if node is None:
-                return
-            dfs(node.left) 
-            res.append(node.val)
-            dfs(node.right)
-        dfs(root)
+                return []
+            return dfs(node.left) + [node.val] + dfs(node.right)
+        res = dfs(root)
         return res[k-1]
-        """
