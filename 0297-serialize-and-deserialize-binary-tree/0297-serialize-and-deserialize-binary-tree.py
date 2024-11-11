@@ -25,17 +25,19 @@ class Codec:
         :rtype: TreeNode
         """
         
-        tree_queue = deque(data.split(","))
+        tree_array = data.split(",")
+        self.array_idx = 0
         def build_tree():
-            val = tree_queue.popleft()
-            if val == "N":
+            if tree_array[self.array_idx] == "N":
+                self.array_idx += 1
                 return None
-            node = TreeNode(int(val))
+            node = TreeNode(int(tree_array[self.array_idx]))
+            self.array_idx += 1
             node.left = build_tree()
             node.right = build_tree()
             return node
         return build_tree()
-
+        
 
 # Your Codec object will be instantiated and called as such:
 # ser = Codec()
