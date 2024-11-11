@@ -1,49 +1,31 @@
 class Solution:
     def isInterleave(self, s1: str, s2: str, s3: str) -> bool:
-        #Solution 2: Recursive solution (optimized)
-        #Time: O(n) Space: O(1?)
-        #(where n == len(s3))
         
-        l1,l2,l3 = len(s1),len(s2),len(s3)
-        if l3 != l1 + l2:
+        #Brute Force Approach w/ Caching
+        '''
+        identify the next required letter in s3:
+        if next letter in s1: try it
+        if next letter in s2: try it
+        if neither: return False
+        '''
+        
+        if len(s1) + len(s2) != len(s3):
             return False
         
-        cache = {}
-        def explore(idx1, idx2, idx3):
-            if idx1 == l1 and idx2 == l2 and idx3 == l3:
+        @cache
+        def search(i1: int, i2: int, i3: int):
+            if i3 == len(s3):
                 return True
-            if (idx1,idx2,idx3) not in cache:
-                p1 = idx1!=l1 and s3[idx3] == s1[idx1] and explore(idx1+1, idx2, idx3+1)
-                p2 = idx2!=l2 and s3[idx3] == s2[idx2] and explore(idx1, idx2+1, idx3+1)
-                cache[(idx1,idx2,idx3)] = p1 or p2
-            return cache[(idx1,idx2,idx3)]
-        
-        return explore(0, 0, 0)
-        
-        """
-        #Solution 1: Recursive solution with string splicing
-        #Time: O(n) Space: O(1?)
-        #(where n == len(s3))
-        #(Time Limit Exceeded)
-        
-        if len(s3) != len(s1) + len(s2):
-            return False
-        
-        def explore(str1, str2, str3):
-            if str1 == "" and str2 == "" and str3 == "":
-                return True
-            if str1 == "":
-                return str2 == str3
-            if str2 == "":
-                return str1 == str3
+            if i1 == len(s1): 
+                return (s3[i3] == s2[i2]) and search(i1,i2+1,i3+1)
+            if i2 == len(s2):
+                return (s3[i3] == s1[i1]) and search(i1+1,i2,i3+1)
+            if s3[i3] != s1[i1] and s3[i3] != s2[i2]:
+                return False
             
-            p1 = p2 = False
-            if str3[0] == str1[0]:
-                p1 = explore(str1[1:], str2, str3[1:])
-            if str3[0] == str2[0]:
-                p2 = explore(str1, str2[1:], str3[1:])
-            
-            return p1 or p2
+            res = False
+            if s3[i3] == s1[i1]: res = res or search(i1+1,i2,i3+1)
+            if s3[i3] == s2[i2]: res = res or search(i1,i2+1,i3+1)
+            return res
         
-        return explore(s1, s2, s3)
-        """
+        return search(0,0,0)
