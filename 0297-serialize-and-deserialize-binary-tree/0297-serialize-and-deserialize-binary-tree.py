@@ -16,8 +16,7 @@ class Codec:
         
         if root is None:
             return "N"
-        return f"{root.val},{self.serialize(root.left)},{self.serialize(root.right)}"
-        
+        return str(root.val) + "," + self.serialize(root.left) + "," + self.serialize(root.right)
 
     def deserialize(self, data):
         """Decodes your encoded data to tree.
@@ -26,20 +25,17 @@ class Codec:
         :rtype: TreeNode
         """
         
-        arr = data.split(",")
-        self.i = 0
-        
-        def dfs():
-            if arr[self.i] == "N":
-                self.i += 1
+        tree_queue = deque(data.split(","))
+        def build_tree():
+            val = tree_queue.popleft()
+            if val == "N":
                 return None
-            node = TreeNode(int(arr[self.i]))
-            self.i += 1
-            node.left = dfs()
-            node.right = dfs()
+            node = TreeNode(int(val))
+            node.left = build_tree()
+            node.right = build_tree()
             return node
-        
-        return dfs()
+        return build_tree()
+
 
 # Your Codec object will be instantiated and called as such:
 # ser = Codec()
