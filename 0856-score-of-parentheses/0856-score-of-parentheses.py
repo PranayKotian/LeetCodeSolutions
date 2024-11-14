@@ -6,7 +6,6 @@ class Solution:
         
         stack = []
         for char in s:
-            print(stack)
             if char == "(":
                 stack.append(char)
             else: #char == ")"
