@@ -4,21 +4,13 @@ class Solution:
         #Stack Solution
         #Time: O(n) Space: O(n)
         
+        parens = {")": "(", "}": "{", "]": "["}
         stack = []
         for char in s:
-            if char in ["(", "{", "["]:
+            if char not in parens:
                 stack.append(char)
             else: 
-                if not stack:
+                if not stack or stack[-1] != parens[char]:
                     return False
-                if char == ")": 
-                    if stack[-1] != "(":
-                        return False
-                elif char == "}":
-                    if stack[-1] != "{":
-                        return False
-                else: #char == "]":
-                    if stack[-1] != "[":
-                        return False
                 stack.pop()
         return stack == []
