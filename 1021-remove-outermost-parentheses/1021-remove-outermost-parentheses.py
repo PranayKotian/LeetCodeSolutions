@@ -4,15 +4,15 @@ class Solution:
         #Constant Space Soltuion
         #Time: O(n) Space: O(1)
         
-        openParens = 0
         res = ""
-        for char in s[1:]:
+        openParens = 0
+        for char in s:
             if char == "(":
-                if openParens >= 0:
+                if openParens > 0:
                     res += char
                 openParens += 1
             else:
-                if openParens != 0:
+                if openParens > 1:
                     res += char
                 openParens -= 1
         return res
