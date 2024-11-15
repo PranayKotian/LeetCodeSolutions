@@ -5,14 +5,14 @@ class Solution:
         #Time: O(n) Space: O(1)
         
         openParens = 0
-        res = []
+        res = ""
         for char in s[1:]:
             if char == "(":
                 if openParens >= 0:
-                    res.append(char)
+                    res += char
                 openParens += 1
             else:
                 if openParens != 0:
-                    res.append(char)
+                    res += char
                 openParens -= 1
-        return "".join(res)
+        return res
