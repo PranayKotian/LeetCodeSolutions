@@ -4,6 +4,5 @@ class Solution:
         #Python Palindrome Check
         #Time: O(n) Space: O(n)
         
-        s = s.lower()
-        s = "".join([i for i in s if i.isalnum()])
+        s = "".join([i for i in s.lower() if i.isalnum()])
         return s == s[::-1]
