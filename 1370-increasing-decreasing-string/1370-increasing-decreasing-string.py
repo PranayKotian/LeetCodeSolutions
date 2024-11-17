@@ -6,18 +6,15 @@ class Solution:
         
         res = []
         letter_count = Counter(s)
-        while True:
-            for letter in sorted(letter_count.keys()):
+        while letter_count:
+            for letter in sorted(letter_count):
                 res.append(letter)
                 letter_count[letter] -= 1
                 if letter_count[letter] == 0:
                     del letter_count[letter]
-                if len(res) == len(s):
-                    return "".join(res)
-            for letter in sorted(letter_count.keys(), reverse=True):
+            for letter in sorted(letter_count, reverse=True):
                 res.append(letter)
                 letter_count[letter] -= 1
                 if letter_count[letter] == 0:
                     del letter_count[letter]
-                if len(res) == len(s):
-                    return "".join(res)
+        return "".join(res)
