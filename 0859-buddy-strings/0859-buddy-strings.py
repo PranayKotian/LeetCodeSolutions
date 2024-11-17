@@ -2,7 +2,7 @@ class Solution:
     def buddyStrings(self, s: str, goal: str) -> bool:
     
         #Swap First Mismatch Solution
-        #Time: O(n) Space: O(n)
+        #Time: O(n) Space: O(1)
         
         if len(s) != len(goal):
             return False
