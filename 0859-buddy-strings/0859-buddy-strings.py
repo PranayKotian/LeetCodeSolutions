@@ -1,16 +1,22 @@
 class Solution:
     def buddyStrings(self, s: str, goal: str) -> bool:
+    
+        #Swap First Mismatch Solution
+        #Time: O(n) Space: O(n)
         
-        #Count Swaps Solution
-        #Time: O(s+g) Space: O(s+g)
-        
-        if s == goal:
-            return any(i>=2 for i in Counter(s).values())
-        if Counter(s) != Counter(goal):
+        if len(s) != len(goal):
             return False
+        if s == goal:
+            return len(s) != len(set(goal))
         
-        swaps = []
-        for i in range(len(goal)):
+        first = None
+        for i in range(len(s)):
             if goal[i] != s[i]:
-                swaps.append(i)
-        return len(swaps) == 2
+                if first is None:
+                    first = i
+                else:
+                    s = list(s)
+                    s[i], s[first] = s[first], s[i]
+                    s = "".join(s)
+                    return s == goal
+        return False
