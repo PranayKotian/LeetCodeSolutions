@@ -5,5 +5,5 @@ class Solution:
         #Time: O(n) Space: O(n)
         
         s = s.lower()
-        s = "".join([i for i in s if i.isalpha() or i.isnumeric()])
+        s = "".join([i for i in s if i.isalnum()])
         return s == s[::-1]
