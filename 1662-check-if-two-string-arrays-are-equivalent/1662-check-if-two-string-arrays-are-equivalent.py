@@ -2,7 +2,7 @@ class Solution:
     def arrayStringsAreEqual(self, word1: List[str], word2: List[str]) -> bool:
         
         #Generators and Yield Solution
-        #Time: O(n) Space: O(1)
+        #Time: O(min(n,m)) Space: O(1)
         
         def generator(wordList: List[str]):
             for segment in wordList:
@@ -14,6 +14,6 @@ class Solution:
         
         """
         #Naive Python Solution
-        #Time: O(n) Space: O(n)
+        #Time: O(max(n,m)) Space: O(max(n,m))
         return "".join(word1) == "".join(word2)
         """
