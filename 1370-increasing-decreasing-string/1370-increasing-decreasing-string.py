@@ -1,20 +1,23 @@
 class Solution:
     def sortString(self, s: str) -> str:
         
+        #Counter + Sorting Solution
+        #Time: O(n) Space: O(n)
         
-        sorted_letters = sorted(list(set(s)))
         res = []
-        count_letters = Counter(s)
+        letter_count = Counter(s)
         while True:
-            for letter in sorted_letters:
-                if count_letters[letter] >= 1:
-                    res.append(letter)
-                    count_letters[letter] -= 1
+            for letter in sorted(letter_count.keys()):
+                res.append(letter)
+                letter_count[letter] -= 1
+                if letter_count[letter] == 0:
+                    del letter_count[letter]
                 if len(res) == len(s):
                     return "".join(res)
-            for letter in sorted_letters[::-1]:
-                if count_letters[letter] >= 1:
-                    res.append(letter)
-                    count_letters[letter] -= 1
+            for letter in sorted(letter_count.keys(), reverse=True):
+                res.append(letter)
+                letter_count[letter] -= 1
+                if letter_count[letter] == 0:
+                    del letter_count[letter]
                 if len(res) == len(s):
                     return "".join(res)
