@@ -11,8 +11,9 @@ class Solution:
         #Time: O(n) Space: O(h)
         
         def validate_BST(node: Optional[TreeNode], minVal: int, maxVal: int):
-            if node is None:
-                return True
-            return minVal < node.val < maxVal and validate_BST(node.left, minVal, node.val) and validate_BST(node.right, node.val, maxVal)
+            res = minVal < node.val < maxVal
+            if node.left: res = res and validate_BST(node.left, minVal, node.val)
+            if node.right: res = res and validate_BST(node.right, node.val, maxVal)
+            return res
         
         return validate_BST(root, ~sys.maxsize, sys.maxsize)
