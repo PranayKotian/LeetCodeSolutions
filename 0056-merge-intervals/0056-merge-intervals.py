@@ -8,8 +8,7 @@ class Solution:
         res = [intervals[0]]
         for s1,e1 in intervals[1:]:            
             if s1 <= res[-1][1]:
-                if e1 > res[-1][1]:
-                    res[-1][1] = e1
+                res[-1][1] = max(res[-1][1], e1)
             else:
                 res.append([s1,e1])
         return res
