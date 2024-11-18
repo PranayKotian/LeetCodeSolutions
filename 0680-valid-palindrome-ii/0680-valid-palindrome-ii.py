@@ -7,7 +7,9 @@ class Solution:
         def is_palindrome(text: str) -> bool:
             return text == text[::-1]
         
-        skip = True
+        if is_palindrome(s):
+            return True
+        
         l = 0
         r = len(s)-1
         while l < r:
@@ -15,4 +17,4 @@ class Solution:
                 return is_palindrome(s[l+1:r+1]) or is_palindrome(s[l:r])
             l += 1
             r -= 1
-        return True
+        #error
