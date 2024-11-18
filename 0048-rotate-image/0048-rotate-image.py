@@ -1,15 +1,17 @@
 class Solution:
     def rotate(self, matrix: List[List[int]]) -> None:
+        """
+        Do not return anything, modify matrix in-place instead.
+        """
         
-        #Copy Matrix Solution 
-        #Time: O(n) Space: O(n)
+        #Matrix Manipulations Solution
+        #Time: O(n) Space: N/A
         
-        arr = []
-        for row in matrix:
-            arr += row
+        #Mirror matrix
+        n = len(matrix)
+        #Transpose matrix
+        matrix.reverse()
+        for r in range(n):
+            for c in range(r+1,n):
+                matrix[r][c], matrix[c][r] = matrix[c][r], matrix[r][c]
         
-        index = 0
-        for c in range(len(matrix[0])-1,-1,-1):
-            for r in range(0, len(matrix)):
-                matrix[r][c] = arr[index]
-                index += 1
