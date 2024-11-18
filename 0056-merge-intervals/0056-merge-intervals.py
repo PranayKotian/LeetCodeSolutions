@@ -5,17 +5,11 @@ class Solution:
         #Time: O(nlogn) Space: O(1)
         
         intervals.sort()
-        cur = intervals[0]
-        res = []
+        res = [intervals[0]] 
         
-        for i in range(1,len(intervals)):
-            s1,e1 = cur
-            s2,e2 = intervals[i]
-            
-            if s2 > e1:
-                res.append(cur)
-                cur = intervals[i]
+        for s1,e1 in intervals[1:]:            
+            if s1 <= res[-1][1]:
+                res[-1][1] = max(res[-1][1],e1)
             else:
-                cur = [s1,max(e1,e2)]
-        res.append(cur)
+                res.append([s1,e1])
         return res
