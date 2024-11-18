@@ -7,13 +7,12 @@
 class Solution:
     def isValidBST(self, root: Optional[TreeNode]) -> bool:
         
-        def traverse(node, minVal, maxVal):
+        #Recursive Solution
+        #Time: O(n) Space: O(h)
+        
+        def validate_BST(node: Optional[TreeNode], minVal: int, maxVal: int):
             if node is None:
                 return True
-            if node.val <= minVal or node.val >= maxVal:
-                return False
-            return traverse(node.left,minVal,node.val) and traverse(node.right,node.val,maxVal)
+            return minVal < node.val < maxVal and validate_BST(node.left, minVal, node.val) and validate_BST(node.right, node.val, maxVal)
         
-        lowest = -(2**31)-1
-        highest = 2**31
-        return traverse(root,lowest,highest)
+        return validate_BST(root, ~sys.maxsize, sys.maxsize)
