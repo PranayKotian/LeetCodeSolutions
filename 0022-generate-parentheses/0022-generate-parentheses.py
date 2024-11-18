@@ -7,10 +7,10 @@ class Solution:
         res = []
         def generate(cur: str, openParens: int, closeParens: int):
             if len(cur) == n*2:
-                if openParens == closeParens: 
-                    res.append(cur)
+                res.append(cur)
                 return
-            generate(cur+"(", openParens+1, closeParens)
+            if openParens < n:
+                generate(cur+"(", openParens+1, closeParens)
             if closeParens < openParens:
                 generate(cur+")", openParens, closeParens+1)
         generate("", 0, 0)
