@@ -1,13 +1,10 @@
 class Solution:
     def findOrder(self, numCourses: int, prerequisites: List[List[int]]) -> List[int]:
         
-        #Create prereqs adjacency list
-        #Track unvisited courses set()
-        #Instance where schedule is impossible: there is a loop in the prereqs adjacencny list
-        #In this instance, return []
-        #Else, build course ordering, once unvisited list in empty, return ordering
+        #Adjacency List Solution
+        #Time: O(n) Space: O(n)
         
-        prereqs = defaultdict(list)
+        prereqs = {i:[] for i in range(numCourses)}
         for crs,prereq in prerequisites:
             prereqs[crs].append(prereq)
             
@@ -18,7 +15,10 @@ class Solution:
             if crs in visited:
                 return False
             if crs not in prereqs:
-                if crs not in ordering: ordering.append(crs)
+                return True
+            if prereqs[crs] == []:
+                ordering.append(crs)
+                del prereqs[crs]
                 return True
             
             visited.add(crs)
