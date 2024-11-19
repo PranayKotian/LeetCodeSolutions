@@ -8,26 +8,20 @@
 class Solution:
     def lowestCommonAncestor(self, root: 'TreeNode', p: 'TreeNode', q: 'TreeNode') -> 'TreeNode':
         
-        #Find Both Paths Solution
+        #Recursive Solution
         #Time: O(n) Space: O(h)
         
-        paths = []
-        def find_path(cur, cur_node, search_node):
-            if cur_node is None:
-                return
-            elif cur_node == search_node:
-                paths.append(cur+[cur_node])
-                return
-            find_path(cur+[cur_node], cur_node.left, search_node)
-            find_path(cur+[cur_node], cur_node.right, search_node)
+        if root is None:
+            return None
+        if root == p or root == q:
+            return root
         
-        find_path([], root, p)
-        find_path([], root, q)
+        p1 = self.lowestCommonAncestor(root.left, p, q)
+        p2 = self.lowestCommonAncestor(root.right, p, q)
         
-        minLen = min(len(paths[0]), len(paths[1]))
-        for i in range(minLen):
-            if paths[0][i] != paths[1][i]:
-                return paths[0][i-1]
-        return paths[0][minLen-1]
-                
-        
+        if p1 is None and p2 is None:
+            return None
+        if p1 and p2:
+            return root
+        if p1: return p1
+        if p2: return p2
