@@ -1,43 +1,36 @@
 class Solution:
     def findOrder(self, numCourses: int, prerequisites: List[List[int]]) -> List[int]:
         
-        #from collections import defaultdict
+        #Create prereqs adjacency list
+        #Track unvisited courses set()
+        #Instance where schedule is impossible: there is a loop in the prereqs adjacencny list
+        #In this instance, return []
+        #Else, build course ordering, once unvisited list in empty, return ordering
         
-        #Adjacency List Solution
-        #Time: O(n) Space: O(n)
-        
-        #Create adjacencny list
-        prereq = {i:[] for i in range(numCourses)}
-        for crs,pre in prerequisites:
-            prereq[crs].append(pre)
-        
-        #Perform DFS that works backwards through prereqs and adds them first
+        prereqs = defaultdict(list)
+        for crs,prereq in prerequisites:
+            prereqs[crs].append(prereq)
+            
+        ordering = []
         visited = set()
-        res = []
         
-        def dfs(crs):
-            if crs in visited: #indicates loop in array
+        def dfs(crs: int) -> None:
+            if crs in visited:
                 return False
-            if crs not in prereq:
-                return True
-            if prereq[crs] == []:
-                res.append(crs)
-                del prereq[crs]
+            if crs not in prereqs:
+                if crs not in ordering: ordering.append(crs)
                 return True
             
-            out = True
             visited.add(crs)
-            for pre in prereq[crs]:
-                out = out and dfs(pre)
-            res.append(crs)
-            del prereq[crs]
+            for prereq in prereqs[crs]:
+                if dfs(prereq) == False:
+                    return False
+            ordering.append(crs)
+            del prereqs[crs]
             visited.remove(crs)
-            return out
+            return True
         
-        for i in range(numCourses):
-            if not dfs(i):
+        for crs in range(numCourses):
+            if dfs(crs) == False:
                 return []
-            
-        if len(res) != numCourses:
-            return []
-        return res
+        return ordering
