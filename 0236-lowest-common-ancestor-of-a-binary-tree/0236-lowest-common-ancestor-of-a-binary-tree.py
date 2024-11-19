@@ -19,9 +19,8 @@ class Solution:
         p1 = self.lowestCommonAncestor(root.left, p, q)
         p2 = self.lowestCommonAncestor(root.right, p, q)
         
-        if p1 is None and p2 is None:
-            return None
         if p1 and p2:
             return root
         if p1: return p1
         if p2: return p2
+        return None
