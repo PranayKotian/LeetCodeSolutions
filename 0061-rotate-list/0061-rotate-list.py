@@ -12,24 +12,20 @@ class Solution:
         if not head:
             return None
         
-        p1 = head
-        len_list = 0
-        while p1:
+        last_elm = head
+        len_list = 1
+        while last_elm.next:
             len_list += 1
-            p1 = p1.next
+            last_elm = last_elm.next
         k = k%len_list
         
         if k == 0:
             return head
-
-        p2 = head
+        
+        last_elm.next = head
+        first_elm = head
         for i in range(len_list-1-k):
-            p2 = p2.next
+            first_elm = first_elm.next
+        first_elm.next, first_elm = None, first_elm.next
         
-        p2.next, p2 = None, p2.next
-        res = p2
-        for i in range(k-1):
-            p2 = p2.next
-        p2.next = head
-        
-        return res
+        return first_elm
