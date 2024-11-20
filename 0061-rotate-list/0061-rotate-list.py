@@ -21,8 +21,7 @@ class Solution:
         
         if k == 0:
             return head
-        
-        first_node = head
+
         p2 = head
         for i in range(len_list-1-k):
             p2 = p2.next
