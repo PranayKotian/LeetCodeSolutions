@@ -11,7 +11,10 @@ class Solution:
             return False
         
         s1_count = Counter(s1)
-        for i in range(s2_len-s1_len+1):
-            if s1_count == Counter(s2[i:i+s1_len]):
+        s2_count = Counter(s2[:s1_len])
+        for i in range(s1_len, s2_len):
+            if s1_count == s2_count:
                 return True
-        return False
+            s2_count[s2[i-s1_len]] -= 1
+            s2_count[s2[i]] += 1
+        return s1_count == s2_count
