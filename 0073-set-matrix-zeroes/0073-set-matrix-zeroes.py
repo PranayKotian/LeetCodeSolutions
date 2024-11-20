@@ -4,51 +4,23 @@ class Solution:
         Do not return anything, modify matrix in-place instead.
         """
         
-        #Two Pass w/ Constant Space Solution
-        #Time: O(n*m) Space: O(1)
-        
-        ROWS = len(matrix)
-        COLS = len(matrix[0])
-        rowZero = False
-        
-        for r in range(ROWS):
-            for c in range(COLS):
-                if matrix[r][c] == 0:
-                    matrix[0][c] = 0
-                    if r > 0:
-                        matrix[r][0] = 0
-                    else:
-                        rowZero = True
-                        
-        for r in range(1,ROWS):
-            for c in range (1,COLS):
-                if matrix[r][0] == 0 or matrix[0][c] == 0:
-                    matrix[r][c] = 0
-        if matrix[0][0] == 0:
-            for r in range(ROWS):
-                matrix[r][0] = 0
-        if rowZero:
-            for c in range(COLS):
-                matrix[0][c] = 0
-        
-        """
-        #Two Pass Solution
-        #Time: O(n*m) Space: O(n+m)
-        
-        rows = set()
-        cols = set()
+        #Rows + Columns Solution
+        #Time: O(nm) Space: O(n+m)
         
         ROWS = len(matrix)
         COLS = len(matrix[0])
         
-        for r in range(ROWS):
-            for c in range(COLS):
-                if matrix[r][c] == 0:
-                    rows.add(r)
-                    cols.add(c)
+        zero_rows = set()
+        zero_cols = set()
         
         for r in range(ROWS):
             for c in range(COLS):
-                if r in rows or c in cols:
+                if matrix[r][c] == 0:
+                    zero_rows.add(r)
+                    zero_cols.add(c)
+        
+        for r in range(ROWS):
+            for c in range(COLS):
+                if r in zero_rows or c in zero_cols:
                     matrix[r][c] = 0
-        """
+        
