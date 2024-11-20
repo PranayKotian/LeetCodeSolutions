@@ -10,9 +10,9 @@ class Solution:
         def check_word(word):
             if word in word_set:
                 return True
-            for i in range(len(word)):
-                if word[:i+1] in word_set:
-                    if check_word(word[i+1:]):
+            for i in range(len(word),0,-1):
+                if word[:i] in word_set:
+                    if check_word(word[i:]):
                         return True
             return False
         
