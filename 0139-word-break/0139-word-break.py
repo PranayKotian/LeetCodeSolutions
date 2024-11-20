@@ -1,16 +1,20 @@
 class Solution:
     def wordBreak(self, s: str, wordDict: List[str]) -> bool:
         
-        #DP Solution
-        #Time: O(s*w) Space: O(s)
+        #Recursive w/ Caching
+        #Time: O(n^2) Space: O(n) 
         
-        arr = [0 for i in range(len(s)+1)]
-        arr[0] = 1
+        word_set = set(wordDict)
         
-        for i in range(len(arr)):
-            if arr[i]:
-                for word in wordDict:
-                    if s[i:i+len(word)] == word:
-                        arr[i+len(word)] = 1
+        @cache
+        def check_word(word):
+            if word in word_set:
+                return True
+            
+            for i in range(len(word)):
+                if word[:i+1] in word_set:
+                    if check_word(word[i+1:]):
+                        return True
+            return False
         
-        return arr[-1] == 1
+        return check_word(s)
