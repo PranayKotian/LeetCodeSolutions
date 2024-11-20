@@ -1,17 +1,22 @@
 class Solution:
     def coinChange(self, coins: List[int], amount: int) -> int:
-        res = [10**5 for i in range(amount+1)]
-        res[0] = 0
+        
+        #Recursive Solution
+        #Time: Space: 
+        
+        @cache
+        def min_coins(amt):
+            if amt == 0:
+                return 0
+            if amt in coins:
+                return 1
 
-        for c in coins:
-            if c <= amount:
-                res[c] = 1
-
-        for i in range(amount+1):
+            res = sys.maxsize
             for c in coins:
-                if i-c >= 0:
-                    res[i] = min(res[i], 1+res[i-c])
-
-        if res[-1] == 10**5:
+                if amt-c >= 0:
+                    res = min(res, min_coins(amt-c)+1)
+            return res
+        
+        if min_coins(amount) >= sys.maxsize:
             return -1
-        return res[-1]
+        return min_coins(amount)
